@@ -32,8 +32,13 @@ struct ContentView: View {
             .ignoresSafeArea()
             .navigationBarHidden(true)
             .navigationDestination(for: Int.self) { num in
-//                nextView
-                Text("GOP \(num) Canteen information")// Show detail page after dismissing the sheet
+                //                nextView
+                Text("GOP \(num) Canteen information") // Show detail page after dismissing the sheet
+                    .onDisappear {
+                        if path.isEmpty {
+                            showCanteenInfoSheet = true
+                        }
+                    }
             }
             .onChange(of: path){_, newPath in
                 if newPath.isEmpty {
@@ -95,8 +100,8 @@ struct CanteenInfoView: View {
                     Spacer()
                     Button(action: {
                         // .toggle() is just the same like a flag to turn it into true / false
-//                        showCanteenInfoSheet.toggle()
-//                        showLocationListSheet.toggle()
+                        //                        showCanteenInfoSheet.toggle()
+                        //                        showLocationListSheet.toggle()
                         
                         showCanteenInfoSheet = false
                         showLocationListSheet = true

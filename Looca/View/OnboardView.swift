@@ -11,7 +11,6 @@ struct OnboardView: View {
     @State private var currentPage = 0
     @State private var gotoMainPage: Bool = false
     
-    
     var body: some View {
         NavigationStack {
             VStack {
@@ -26,6 +25,7 @@ struct OnboardView: View {
                 .animation(.easeInOut, value: currentPage)
                 
                 Spacer()
+                
                 
                 Button(action: {
                     if currentPage < 1 {
@@ -46,15 +46,16 @@ struct OnboardView: View {
                     
                 }
                 .padding(.bottom, 40)
-                
-                
             }
+            
+            .ignoresSafeArea()
+            .background(Color("MainColor"))
+            .navigationBarBackButtonHidden(true)
             .navigationDestination(isPresented: $gotoMainPage) {
                 ContentView()
             }
-            .ignoresSafeArea()
-            .background(Color("MainColor"))
         }
+        
     }
 }
 

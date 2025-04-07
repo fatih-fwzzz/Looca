@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct LoocaApp: App {
+    
     var body: some Scene {
         WindowGroup {
-            OnboardView()
+//            OnboardView()
+            ContentView()
         }
     }
 }
