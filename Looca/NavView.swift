@@ -1,15 +1,39 @@
 //
-//  NavView.swift
-//  Looca
+//  ContentView.swift
+//  CobaLooca
 //
-//  Created by Patricia Putri Art Syani on 07/04/25.
+//  Created by Patricia Putri Art Syani on 25/03/25.
 //
 
 import SwiftUI
 
 struct NavView: View {
+    @Environment(\.dismiss) var dismiss
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack{
+            ScrollView{
+                VStack (){
+                    NavCard()
+                    NavCard()
+                    NavCard()
+                }
+                .padding()
+            }
+            .navigationBarTitle("Direction")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar{
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: {
+                        dismiss()
+                    }) {
+                        Image(systemName: "xmark.circle.fill")
+                            .foregroundColor(Color.gray)
+                            .font(.subheadline)
+                    }
+                }
+            }
+        }
     }
 }
 
