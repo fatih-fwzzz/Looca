@@ -11,7 +11,7 @@ import SwiftUI
 struct LoocaApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            OnboardView()
         }
     }
 }
