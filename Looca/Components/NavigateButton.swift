@@ -8,29 +8,22 @@
 import SwiftUI
 
 struct NavigateButton: View {
-    @Binding var showDirections: Bool
+    
     var body: some View {
-        Button (action :{
-            showDirections.toggle()
-        }) {
-            HStack {
-                Image(systemName: "location.fill")
-                Text("Start Navigation")
-                    
-            }
-            .font(.headline)
-            .foregroundColor(.white)
-            .padding()
-            .frame(maxWidth: .infinity)
-            .background(Color.blue)
-            .cornerRadius(10)
+        HStack {
+            Image(systemName: "location.fill")
+            Text("Start Navigation")
+                
         }
-        //lokasi buttonnya di layar
-//        .padding(.bottom, 200)
-//        .contentMargins(20)
+        .font(.headline)
+        .foregroundColor(.white)
+        .padding()
+        .frame(maxWidth: .infinity)
+        .background(Color.blue)
+        .cornerRadius(10)
     }
 }
 
 #Preview {
-    NavigateButton(showDirections: .constant(false))
+    NavigateButton()
 }

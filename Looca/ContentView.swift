@@ -17,6 +17,7 @@ struct ContentView: View {
     
     @State private var showLocationListSheet = true
     @State private var showCanteenInfoSheet = false
+    @State private var showNavSheet = false
     @State private var showAll = false
     
     @State private var selectedDetent: PresentationDetent = .fraction(0.5)
@@ -51,7 +52,14 @@ struct ContentView: View {
         
         // second sheet
         .sheet(isPresented: $showCanteenInfoSheet){
-            CanteenInfoView(path: $path, showLocationListSheet: $showLocationListSheet, showCanteenInfoSheet: $showCanteenInfoSheet, selectedDetent: $selectedDetent, selectedCanteenLocation: $selectedCanteenLocation)
+            CanteenInfoView(path: $path, showLocationListSheet: $showLocationListSheet, showCanteenInfoSheet: $showCanteenInfoSheet, showNavSheet: $showNavSheet, selectedDetent: $selectedDetent, selectedCanteenLocation: $selectedCanteenLocation)
+                .presentationDetents([.fraction(0.5), .medium, .large], selection: $selectedDetent)
+                .presentationDragIndicator(.visible)
+        }
+        
+        // third sheet
+        .sheet(isPresented: $showNavSheet){
+            NavView(showNavSheet: $showNavSheet, showCanteenInfoSheet: $showCanteenInfoSheet)
                 .presentationDetents([.fraction(0.5), .medium, .large], selection: $selectedDetent)
                 .presentationDragIndicator(.visible)
         }
@@ -63,8 +71,11 @@ struct CanteenInfoView: View {
     @State private var showAll: Bool = true
     
     @Binding var path: [Int]
+    
     @Binding var showLocationListSheet: Bool
     @Binding var showCanteenInfoSheet: Bool
+    @Binding var showNavSheet: Bool
+    
     @Binding var selectedDetent: PresentationDetent
     @Binding var selectedCanteenLocation: Int
     
@@ -136,8 +147,15 @@ struct CanteenInfoView: View {
                 
                 // Button Fixed at Bottom
                 VStack {
-                    NavigateButton(showDirections: .constant(false))
-                        .padding()
+                    Button {
+                        showCanteenInfoSheet.toggle()
+                        showNavSheet.toggle()
+                    }
+                    label:{
+                        NavigateButton()
+                            .padding()
+                    }
+                    
                 }
                 .frame(maxWidth: .infinity)
                 .background(Color.white)

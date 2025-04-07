@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct NavView: View {
-    @Environment(\.dismiss) var dismiss
+    @Binding var showNavSheet: Bool
+    @Binding var showCanteenInfoSheet: Bool
     
     var body: some View {
         NavigationStack{
@@ -25,7 +26,8 @@ struct NavView: View {
             .toolbar{
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
-                        dismiss()
+                        showNavSheet = false
+                        showCanteenInfoSheet = true
                     }) {
                         Image(systemName: "xmark.circle.fill")
                             .foregroundColor(Color.gray)
@@ -38,5 +40,5 @@ struct NavView: View {
 }
 
 #Preview {
-    NavView()
+    NavView(showNavSheet: .constant(true), showCanteenInfoSheet: .constant(false))
 }
