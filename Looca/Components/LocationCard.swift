@@ -8,17 +8,14 @@
 import SwiftUI
 
 struct LocationCard: View {
-    @Binding var showDistance: Bool
     var locationName: String
     var locationDistance: Int
     
     var body: some View {
-        Button(action: {showDistance.toggle()}) {
             HStack{
-                Image(systemName: "mappin.circle")
+                Image(systemName: "signpost.left")
                     .resizable()
                     .frame(width: 32, height: 32)
-                    .padding(10)
                 VStack(alignment: .leading) {
                     Text(locationName)
                         .font(.headline)
@@ -27,11 +24,12 @@ struct LocationCard: View {
                         .font(.subheadline)
                         .foregroundColor(.gray)
                 }
+                .padding(EdgeInsets(top: 5, leading: 0, bottom: 0, trailing: 0))
+                Spacer()
             }
-        }.buttonStyle(PlainButtonStyle())   
     }
 }
 
 #Preview {
-    LocationCard(showDistance: .constant(false), locationName: "GOP 9 Canteen", locationDistance: 1)
+    LocationCard(locationName: "GOP 9 Canteen", locationDistance: 1)
 }
