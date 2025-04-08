@@ -11,7 +11,7 @@ struct NavView: View {
     @Binding var showNavSheet: Bool
     @Binding var showCanteenInfoSheet: Bool
     
-    @State var selectedPage: SelectedPage
+    
     
     let canteen: Canteen  // Accept the selected canteen
     

@@ -18,9 +18,9 @@ struct TenantCard: View  {
             Image(imageName)
                 .resizable()
                 .scaledToFill()
-                .frame(width: 100, height: 100)
+                .frame(width: 150, height: 150)
                 .clipped()
-                .cornerRadius(16)
+                .cornerRadius(5)
                 .shadow(radius: 5)
             
             // Overlay Text
@@ -34,11 +34,11 @@ struct TenantCard: View  {
             
             
         }
-        .frame(width: 100, height: 100)
-        .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 5))
+        
+        .padding(.trailing, 20)
     }
 }
 
 #Preview {
-    TenantCard(imageName: "restaurant", tenantName: "GOP 9 Locaxtion")
+    TenantCard(imageName: "restaurant", tenantName: "GOP 9 Location")
 }

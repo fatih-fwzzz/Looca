@@ -2,8 +2,8 @@
     {
         "id": 1,
         "name": "GOP 1 Canteen",
-        "latitude": -6.30243,
-        "longitude": 106.65225,
+        "latitude": -6.301458549442683,
+        "longitude": 106.65057935323979,
         "image": "gop-9-image.jpg",
         "openHours": "17.00 - 20.00",
         "estimationInMin": 5,
@@ -80,8 +80,86 @@
     {
         "id": 2,
         "name": "GOP 6 Canteen",
-        "latitude": -6.30312,
-        "longitude": 106.65378,
+        "latitude": -6.30243,
+        "longitude": 106.65225,
+        "image": "gop-7-image.jpg",
+        "openHours": "10.00 - 22.00",
+        "estimationInMin": 7,
+        "distanceInKm": 0.8,
+        "tenants": [
+            {
+                "id": 3,
+                "name": "Richeese Factory",
+                "description": "Cheesy spicy goodness for chicken lovers",
+                "image": "richeese-image.jpg",
+                "priceMin": 25000,
+                "priceMax": 60000,
+                "menus": [
+                    {
+                        "id": 5,
+                        "name": "Fire Chicken",
+                        "description": "Spicy chicken with signature cheese sauce",
+                        "image": "fire-chicken-image.jpg",
+                        "price": 45000,
+                        "bestSeller": true
+                    },
+                    {
+                        "id": 6,
+                        "name": "French Fries",
+                        "description": "Crispy fries with a cheesy twist",
+                        "image": "french-fries.jpg",
+                        "price": 25000,
+                        "bestSeller": false
+                    }
+                ]
+            },
+            {
+                "id": 4,
+                "name": "A&W",
+                "description": "Root beer and fried chicken heaven",
+                "image": "aw-restaurant.jpg",
+                "priceMin": 30000,
+                "priceMax": 70000,
+                "menus": [
+                    {
+                        "id": 7,
+                        "name": "Mozza Burger",
+                        "description": "Juicy burger with melted mozzarella",
+                        "image": "mozza-burger-image.jpg",
+                        "price": 50000,
+                        "bestSeller": true
+                    },
+                    {
+                        "id": 8,
+                        "name": "Root Beer Float",
+                        "description": "Classic root beer with creamy vanilla ice cream",
+                        "image": "root-beer-image.jpg",
+                        "price": 30000,
+                        "bestSeller": false
+                    }
+                ]
+            }
+        ],
+        "directions": [
+            {
+                "id": 3,
+                "description": "Go straight from GOP 9 lobby and pass the ATM Center",
+                "afterMeters": 300,
+                "image": "atm-center.jpg"
+            },
+            {
+                "id": 4,
+                "description": "Turn left at the Food Hall entrance",
+                "afterMeters": 200,
+                "image": "food-hall-entrance.jpg"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "name": "GOP 9 Canteen",
+        "latitude": -6.30279,
+        "longitude": 106.65321,
         "image": "gop-7-image.jpg",
         "openHours": "10.00 - 22.00",
         "estimationInMin": 7,

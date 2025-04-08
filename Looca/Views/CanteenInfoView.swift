@@ -23,38 +23,44 @@ struct CanteenInfoView: View {
     
     var body: some View {
         if let selectedCanteen = canteens.first(where: { $0.id == selectedCanteenLocation }){
-            ZStack{
-                Color.white.ignoresSafeArea()
                 VStack {
-                    HStack {
-                        VStack(alignment: .leading) {
+                    VStack(alignment: .leading) {
+                        HStack {
                             Text(selectedCanteen.name)
                                 .font(.title)
-                                .fontWeight(.semibold)
-                                .padding(EdgeInsets(top: 5, leading: 0, bottom: 0, trailing: 0))
-                            Text("Delicious foods are here")
+                                .fontWeight(.bold)
                             
+                            Spacer()
+                            
+                            Button(action: {
+                                showCanteenInfoSheet = false
+                                showLocationListSheet = true
+                            }) {
+                                Image(systemName: "xmark.circle.fill")
+                                    .font(.title2)
+                                    .fontWeight(.medium)
+                                    .foregroundColor(Color("MainColor"))
+                            }
                         }
-                        Spacer()
-                        Button(action: {
-                            showCanteenInfoSheet = false
-                            showLocationListSheet = true
-                        }) {
-                            Image(systemName: "xmark.circle.fill")
-                                .font(.title)
-                                .foregroundColor(.gray)
-                        }
-                    }.padding()
+                        .padding(.top, 5)
+
+                        Text("Located in the basement of Monash University’s Building")
+                            .font(.subheadline)
+                            .lineLimit(nil)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .frame(maxWidth: 250, alignment: .leading) 
+                    }
                     
                     // find the data based on the id
                     
                     CanteenInfoCard(openHours: selectedCanteen.openHours, estimate: selectedCanteen.estimationInMin, distance: Int(selectedCanteen.distanceInKm))
+                        .padding([.top, .bottom])
                     
                     Text("Tenant List")
                         .font(.headline)
                         .fontWeight(.semibold)
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.leading)
+//                        .padding(.leading)
                     
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack {
@@ -67,17 +73,6 @@ struct CanteenInfoView: View {
                                     TenantCard(imageName: "restaurant", tenantName: tenant.name)
                                 }
                                 .buttonStyle(PlainButtonStyle())
-                            }
-                            
-                            Button(action: { showAll.toggle() }) {
-                                Text("Show All")
-                                    .scaledToFill()
-                                    .frame(width: 100, height: 100)
-                                    .clipped()
-                                    .background(Color.gray.opacity(0.3))
-                                    .cornerRadius(16)
-                                    .foregroundColor(.black)
-                                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 5))
                             }
                         }
                         .padding(.leading)
@@ -100,11 +95,15 @@ struct CanteenInfoView: View {
                         
                     }
                     .frame(maxWidth: .infinity)
-                    .background(Color.white)
                     
-                }.ignoresSafeArea(.keyboard)
-                
-            }
+                    
+                }
+                .padding([.horizontal, .top])
+                .ignoresSafeArea(.keyboard)
+                .foregroundColor(Color("MainColor"))
+                .background(Color.white)
+            
+            
         }
     }
 }
@@ -114,6 +113,6 @@ struct CanteenInfoView: View {
                     showLocationListSheet: .constant(false), showCanteenInfoSheet: .constant(true),
                     showNavSheet: .constant(false),
                     selectedDetent: .constant(.fraction(0.5)), selectedCanteenLocation: .constant(1),
-                    canteens: [Canteen(id: 1, name: "asdff", latitude: 10, longitude: 35, image: "restaurants2", openHours: "17.00-23.00", estimationInMin: 10, distanceInKm: 10.0, tenants: [Tenant(id: 2, name: "t1", description: "asdf", image: "placeholder", priceMin: 10, priceMax: 100, menus: [Menu(id: 1, name: "asdf", description: "asdfg", image: "sadf", price: 14, bestSeller: true)])], directions: [Direction(id: 1, description: "sadg", afterMeters: 10, image: "restaurant")])]
+                    canteens: [Canteen(id: 1, name: "GOP 9 Canteen", latitude: 10, longitude: 35, image: "restaurants2", openHours: "17.00-23.00", estimationInMin: 10, distanceInKm: 10.0, tenants: [Tenant(id: 1, name: "t1", description: "asdf", image: "placeholder", priceMin: 10, priceMax: 100, menus: [Menu(id: 1, name: "asdf", description: "asdfg", image: "sadf", price: 14, bestSeller: true)]), Tenant(id: 2, name: "t2", description: "asdf", image: "placeholder", priceMin: 10, priceMax: 100, menus: [Menu(id: 1, name: "asdf", description: "asdfg", image: "sadf", price: 14, bestSeller: true)]), Tenant(id: 3, name: "t3", description: "asdf", image: "placeholder", priceMin: 10, priceMax: 100, menus: [Menu(id: 1, name: "asdf", description: "asdfg", image: "sadf", price: 14, bestSeller: true)])], directions: [Direction(id: 1, description: "sadg", afterMeters: 10, image: "restaurant")])]
                 )
 }

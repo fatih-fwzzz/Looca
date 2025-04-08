@@ -17,7 +17,9 @@ class SelectedPage: ObservableObject {
 }
 
 extension CLLocationCoordinate2D {
+    static let gopOneCanteen = CLLocationCoordinate2D(latitude: -6.301458549442683, longitude: 106.65057935323979)
     static let gopNineCanteen = CLLocationCoordinate2D(latitude: -6.30243, longitude: 106.65225)
+    static let gopSixCanteen = CLLocationCoordinate2D(latitude: -6.30279, longitude: 106.65321)
 }
 
 struct ContentView: View {
@@ -30,7 +32,7 @@ struct ContentView: View {
     @State private var showNavSheet = false
     @State private var showAll = false
     
-    @State private var selectedDetent: PresentationDetent = .fraction(0.5)
+    @State private var selectedDetent: PresentationDetent = .medium
     
     @State private var selectedCanteenLocation: Int = 0// default selected canteen
     
@@ -39,14 +41,25 @@ struct ContentView: View {
     
     var body: some View {
         NavigationStack(path: $path){
-            Map{
+            Map(initialPosition: .region(
+                MKCoordinateRegion(
+                    center: CLLocationCoordinate2D(latitude: CLLocationCoordinate2D.gopNineCanteen.latitude - 0.001,
+                                                   longitude: CLLocationCoordinate2D.gopNineCanteen.longitude),
+                    span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
+                )
+            )){
                 Marker("GOP 9 Canteen", coordinate: .gopNineCanteen)
+                Marker("GOP 1 Canteen", coordinate: .gopOneCanteen)
+                Marker("GOP 6 Canteen", coordinate: .gopSixCanteen)
             }
             .ignoresSafeArea()
             .navigationBarHidden(true)
             .navigationDestination(for: Int.self) { num in
                 // it should be a view that consist of the menu's list of selected canteen
-                Text("GOP \(num) Canteen information") // Show detail page after dismissing the sheet
+                // Show detail page after dismissing the sheet
+//                Text("GOP \(num) Canteen information")
+                CanteenListView()
+                
                     .onDisappear {
                         if path.isEmpty {
                             showCanteenInfoSheet = true
@@ -63,7 +76,7 @@ struct ContentView: View {
         // first sheet
         .sheet(isPresented: $showLocationListSheet) {
             LocationListView(showLocationListSheet: $showLocationListSheet, showCanteenInfoSheet: $showCanteenInfoSheet, path: $path, selectedDetent: $selectedDetent, selectedCanteenLocation: $selectedCanteenLocation, selectedPage: selectedPage, canteens: viewModel.canteens)
-                .presentationDetents([.fraction(0.5), .medium, .large], selection: $selectedDetent)
+                .presentationDetents([.medium, .large], selection: $selectedDetent)
                 .presentationDragIndicator(.visible)
                 .presentationBackgroundInteraction(.enabled)
         }
@@ -84,7 +97,7 @@ struct ContentView: View {
             //            print("viewModel.canteens: \(viewModel.canteens)")
             
             if let selectedCanteen = viewModel.canteens.first(where: { $0.id == selectedPage.selectedPage }) {
-                NavView(showNavSheet: $showNavSheet, showCanteenInfoSheet: $showCanteenInfoSheet, selectedPage: selectedPage, canteen: selectedCanteen)
+                NavView(showNavSheet: $showNavSheet, showCanteenInfoSheet: $showCanteenInfoSheet, canteen: selectedCanteen)
                     .presentationDetents([.fraction(0.5), .medium, .large], selection: $selectedDetent)
                     .presentationDragIndicator(.visible)
             } else {

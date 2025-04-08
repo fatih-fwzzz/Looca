@@ -41,7 +41,7 @@ struct NavCard: View {
                 .padding()
                 
                 // Image card with tap gesture
-                Image(direction.image)  // Use the image from direction
+                Image("parking lot")  // Use the image from direction
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(height: 150)

@@ -19,7 +19,7 @@ struct NavigateButton: View {
         .foregroundColor(.white)
         .padding()
         .frame(maxWidth: .infinity)
-        .background(Color.blue)
+        .background(Color("MainColor"))
         .cornerRadius(10)
     }
 }
