@@ -8,59 +8,59 @@
 import SwiftUI
 
 struct NavCard: View {
+    @State private var isShowingImage = false
+    @State private var imageName = "parking lot"
     
-    @State var isShowingImage = false
-    @State var imageName = "parking lot"
+    let direction: Direction  // Accept a Direction object
     
     var body: some View {
-            ZStack {
-                RoundedRectangle(cornerRadius: 15)
-                    .stroke(Color.blue, lineWidth: 2)
-                    .shadow(radius: 4)
-                
-                    VStack {
-                        HStack {
-                            Image(systemName: "arrow.forward")
-                                .foregroundColor(.white)
-                                .font(.title)
-                                .background(
-                                    Circle()
-                                        .foregroundColor(.blue)
-                                        .frame(width: 40, height: 40)
-                                )
-                            Spacer()
-                            VStack (alignment: .leading) {
-                                Text("Turn right at Parking Lot GOP 9")
-                                    .font(.title3)
-                                Text("After 200 m")
-                                    .font(.subheadline)
-                                    .foregroundColor(.gray)
-                            }
-                        }
-                        .padding()
-                        
-                        //image card with tap
-                        Image("parking lot")
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: nil, height: 150)
-                            .clipShape(RoundedRectangle(cornerRadius: 15))
-                            .clipped()
-                            .onTapGesture {
-                                isShowingImage.toggle()
-                                imageName = "parking lot"
-                            }
-                        
-//
-                        
+        ZStack {
+            RoundedRectangle(cornerRadius: 15)
+                .stroke(Color.blue, lineWidth: 2)
+                .shadow(radius: 4)
+            
+            VStack {
+                HStack {
+                    Image(systemName: "arrow.forward")
+                        .foregroundColor(.white)
+                        .font(.title)
+                        .background(
+                            Circle()
+                                .foregroundColor(.blue)
+                                .frame(width: 40, height: 40)
+                        )
+                    Spacer()
+                    VStack (alignment: .leading) {
+                        Text(direction.description)  // Show direction description
+                            .font(.title3)
+                        Text("After \(direction.afterMeters) meters")  // Show distance
+                            .font(.subheadline)
+                            .foregroundColor(.gray)
                     }
-                    .padding(12)
+                }
+                .padding()
+                
+                // Image card with tap gesture
+                Image(direction.image)  // Use the image from direction
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(height: 150)
+                    .clipShape(RoundedRectangle(cornerRadius: 15))
+                    .clipped()
+                    .onTapGesture {
+                        isShowingImage.toggle()
+                        imageName = direction.image
+                    }
             }
-            .frame(maxWidth:.infinity)
-            .fullScreenCover(isPresented: $isShowingImage) { DetailImage(isShowingImage: $isShowingImage, imageName: imageName)
-            }
+            .padding(12)
+        }
+        .frame(maxWidth:.infinity)
+        .fullScreenCover(isPresented: $isShowingImage) {
+            DetailImage(isShowingImage: $isShowingImage, imageName: imageName)
+        }
     }
 }
+
 
 struct DetailImage: View {
     
@@ -129,6 +129,6 @@ struct DetailImage: View {
 //    DetailImage(isShowingImage: .constant(false))
 //}
 
-#Preview {
-    NavCard()
-}
+//#Preview {
+//    NavCard()
+//}

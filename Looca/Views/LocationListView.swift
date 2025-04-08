@@ -12,20 +12,25 @@ struct LocationListView: View {
     @Binding var showCanteenInfoSheet: Bool
     @Binding var path: [Int]
     @Binding var selectedDetent: PresentationDetent
-    
     @Binding var selectedCanteenLocation: Int
+    
+    // MARK: -- ini sama kayak binding
+    @ObservedObject var selectedPage: SelectedPage
+    
+    let canteens: [Canteen]
     
     var body: some View {
         NavigationStack {
-            List(1...10, id: \.self) { num in
+            List(canteens) { canteen in
                 Button {
-                    selectedCanteenLocation = num
+                    selectedCanteenLocation = canteen.id
+                    selectedPage.selectedPage = canteen.id
                     
                     showLocationListSheet = false
                     showCanteenInfoSheet = true
                 }
                 label: {
-                    LocationCard(locationName: "GOP \(num) Canteen", locationDistance: 3)
+                    LocationCard(locationName: canteen.name, locationDistance: Int(canteen.distanceInKm))
                 }
                 .buttonStyle(PlainButtonStyle())
             }

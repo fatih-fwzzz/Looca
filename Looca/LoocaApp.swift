@@ -10,10 +10,17 @@ import SwiftUI
 @main
 struct LoocaApp: App {
     
+    @AppStorage("firstLaunch") var firstLaunch = false
+    
     var body: some Scene {
         WindowGroup {
-//            OnboardView()
-            ContentView()
+            
+            if !firstLaunch {
+                ContentView()
+            } else {
+                OnboardView()
+            }
+            
         }
     }
 }

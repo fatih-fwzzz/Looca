@@ -35,7 +35,6 @@ struct TenantCard: View  {
             
         }
         .frame(width: 100, height: 100)
-        //        .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 5))
         .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 5))
     }
 }

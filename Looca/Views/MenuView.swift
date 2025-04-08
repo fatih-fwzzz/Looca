@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MenuViewSatu: View {
+struct MenuView: View {
     @Environment(\.dismiss) private var dismiss
     @Binding var path: [Int]
     @Binding var showingSheetFirst: Bool
