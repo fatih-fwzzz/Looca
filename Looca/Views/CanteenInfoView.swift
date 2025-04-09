@@ -10,7 +10,6 @@ import SwiftUI
 struct CanteenInfoView: View {
     @State private var showAll: Bool = true
     
-    @Binding var path: [Int]
     @Binding var showLocationListSheet: Bool
     @Binding var showCanteenInfoSheet: Bool
     @Binding var showStepNavigationView: Bool
@@ -42,46 +41,44 @@ struct CanteenInfoView: View {
                                     .foregroundColor(Color("MainColor"))
                             }
                         }
+                        
 
-                        Text("Located in the basement of Monash University’s Building")
+                        Text(selectedCanteen.description)
                             .font(.subheadline)
                             .lineLimit(nil)
                             .fixedSize(horizontal: false, vertical: true)
                             .frame(maxWidth: 250, alignment: .leading)
                         
                         // Info Cards
-                        CanteenInfoCard(
-                            openHours: selectedCanteen.openHours,
-                            estimate: selectedCanteen.estimationInMin,
-                            distance: Int(selectedCanteen.distanceInKm)
-                        )
-                        .padding(.top)
+                        VStack {
+                            CanteenInfoCard(
+                                openHours: selectedCanteen.openHours,
+                                estimate: selectedCanteen.estimationInMin,
+                                distance: Int(selectedCanteen.distanceInMeters)
+                            )
+                            
+                            AdditionalInfoCard(bestDish: selectedCanteen.bestDish, atmosphere: selectedCanteen.atmosphere, priceRange: selectedCanteen.priceRange, frequency: selectedCanteen.frequency)
+                        }
+                        .padding([.top, .bottom])
                         
-                        AdditionalInfoCard()
+                        
                         
                         Text("Top Tenants")
                             .font(.headline)
                             .fontWeight(.semibold)
                             .frame(maxWidth: .infinity, alignment: .leading)
-                            .padding(.top)
                         
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack {
                                 ForEach(selectedCanteen.tenants) { tenant in
-                                    Button {
-                                        path.append(selectedCanteenLocation)
-                                        showCanteenInfoSheet.toggle()
-                                    } label: {
-                                        TenantCard(imageName: "restaurant", tenantName: tenant.name)
-                                    }
-                                    .buttonStyle(PlainButtonStyle())
+                                    TenantCard(imageName: "restaurant", tenantName: tenant.name, tenantDescription: tenant.description)
                                 }
                             }
                             .padding(.leading)
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
                     }
-                    .padding(.horizontal)
+                    .padding(.horizontal, 20)
                     .padding(.top, 30)
                 }
                 
@@ -99,16 +96,31 @@ struct CanteenInfoView: View {
             }
             .ignoresSafeArea(.keyboard)
             .foregroundColor(Color("MainColor"))
-            .background(Color.white)
+            .background(Color("BackgroundColor"))
+            
         }
     }
 }
 
 #Preview {
-    CanteenInfoView(path: .constant([]),
-                    showLocationListSheet: .constant(false), showCanteenInfoSheet: .constant(true),
-                    showStepNavigationView: .constant(false),
-                    selectedDetent: .constant(.fraction(0.5)), selectedCanteenLocation: .constant(1),
-                    canteens: [Canteen(id: 1, name: "GOP 9 Canteen", latitude: 10, longitude: 35, image: "restaurants2", openHours: "17.00-23.00", estimationInMin: 10, distanceInKm: 10.0, tenants: [Tenant(id: 1, name: "t1", description: "asdf", image: "placeholder", priceMin: 10, priceMax: 100, menus: [Menu(id: 1, name: "asdf", description: "asdfg", image: "sadf", price: 14, bestSeller: true)]), Tenant(id: 2, name: "t2", description: "asdf", image: "placeholder", priceMin: 10, priceMax: 100, menus: [Menu(id: 1, name: "asdf", description: "asdfg", image: "sadf", price: 14, bestSeller: true)]), Tenant(id: 3, name: "t3", description: "asdf", image: "placeholder", priceMin: 10, priceMax: 100, menus: [Menu(id: 1, name: "asdf", description: "asdfg", image: "sadf", price: 14, bestSeller: true)]), Tenant(id: 4, name: "t3", description: "asdf", image: "placeholder", priceMin: 10, priceMax: 100, menus: [Menu(id: 1, name: "asdf", description: "asdfg", image: "sadf", price: 14, bestSeller: true)])], directions: [Direction(id: 1, description: "uiiaiouiiaux", afterMeters: 10, image: "restaurant", latitude: 6.3020, longitude: 106.65166)])]
-                )
+    CanteenInfoView(showLocationListSheet: .constant(true), showCanteenInfoSheet: .constant(false), showStepNavigationView: .constant(false), selectedDetent: .constant(.medium), selectedCanteenLocation: .constant(1), canteens: [
+        Canteen(
+            id: 1,
+            name: "asd",
+            description: "asdfghjkl",
+            latitude: -6.301458549442683,
+            longitude: 106.65057935323979,
+            image: "restaurant",
+            openHours: "17.00 - 20.00",
+            estimationInMin: 10,
+            distanceInMeters: 300,
+            atmosphere: "Popular During Break Time",
+            bestDish: "Ayam Goyeng Kasturi",
+            priceRange: "IDR 10.000 - IDR 20.000",
+            frequency: "Moderately Busy",
+                tenants: [
+                    Tenant(id: 1, name: "KFC", description: "Kentucky Fried Chicken", image: "restaurant"),
+                    Tenant(id: 1, name: "Burger King", description: "The burgers are so big!", image: "restauran2"),
+                ], directions: [])
+    ])
 }

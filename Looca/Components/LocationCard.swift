@@ -12,6 +12,7 @@ struct LocationCard: View {
     var locationDistance: Int
     
     var body: some View {
+        VStack {
             HStack{
                 Image("pinpoint")
                     .resizable()
@@ -21,13 +22,18 @@ struct LocationCard: View {
                     Text(locationName)
                         .font(.headline)
                         .fontWeight(.bold)
-                    Text("\(locationDistance) km away")
+                    Text("\(locationDistance) m away")
                         .font(.subheadline)
-                        .foregroundColor(.gray)
                 }
-                .padding(EdgeInsets(top: 5, leading: 0, bottom: 0, trailing: 0))
+                .padding(.top)
                 Spacer()
             }
+            .padding(.vertical, 5)
+            .padding(.horizontal, 20)
+        }
+        .background(Color.white)
+        .cornerRadius(12)
+        
     }
 }
 

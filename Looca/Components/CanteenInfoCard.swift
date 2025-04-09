@@ -13,58 +13,47 @@ struct CanteenInfoCard: View {
     var distance: Int
     
     var body: some View {
-        HStack(spacing: 16) { // spacing between the cards
-            VStack {
-                Image(systemName: "door.left.hand.open")
-                    .padding(.bottom, 5)
-//                Text("Open Hours")
-//                    .font(.headline)
-//                    .fontWeight(.semibold)
-                Text(openHours)
-                    .font(.subheadline)
-                    .fontWeight(.regular)
-            }
-            .frame(width: 90, height: 60)
-            .padding(10)
-            .background(Color("SecondColor"))
-            .cornerRadius(12)
-            .shadow(radius: 2)
-
-            VStack {
-                Image(systemName: "clock")
-                    .padding(.bottom, 5)
-//                Text("Estimation")
-//                    .font(.headline)
-//                    .fontWeight(.semibold)
-                Text("\(estimate) min / Walk")
-                    .font(.subheadline)
-                    .fontWeight(.regular)
-            }
-            .frame(width: 90, height: 60)
-            .padding(10)
-            .background(Color("SecondColor"))
-            .cornerRadius(12)
-            .shadow(radius: 2)
-
-            VStack {
-                Image(systemName: "mappin.and.ellipse")
-                    .padding(.bottom, 5)
-//                Text("Distance")
-//                    .font(.headline)
-//                    .fontWeight(.semibold)
-                Text("\(distance) m")
-                    .font(.subheadline)
-                    .fontWeight(.regular)
-            }
-            .frame(width: 90, height: 60)
-            .padding(10)
-            .background(Color("SecondColor"))
-            .cornerRadius(12)
-            .shadow(radius: 2)
+        HStack(spacing: 16) {
+            infoCard(
+                icon: "door.left.hand.open",
+                text: openHours
+            )
+            
+            infoCard(
+                icon: "figure.walk",
+                text: "\(estimate) min"
+            )
+            
+            infoCard(
+                icon: "mappin.and.ellipse",
+                text: "\(distance) m"
+            )
         }
+    }
+    
+    // Helper view for each card
+    @ViewBuilder
+    private func infoCard(icon: String, text: String) -> some View {
+        VStack(alignment: .center, spacing: 5) {
+            Image(systemName: icon)
+                .resizable()
+                .scaledToFit()
+                .frame(height: 26)
+                .padding(.bottom, 5) // consistent icon size
+            Text(text)
+                .font(.subheadline)
+                .fontWeight(.regular)
+                .multilineTextAlignment(.center)
+                .fixedSize(horizontal: false, vertical: true)
+        }
+        .frame(width: 95, height: 65)
+        .padding(10)
+        .background(Color("SecondColor"))
+        .cornerRadius(12)
+        .shadow(radius: 2)
     }
 }
 
 #Preview {
-    CanteenInfoCard(openHours: "07.00 - 15.00", estimate: 5, distance: 1)
+    CanteenInfoCard(openHours: "23.00 - 24.00", estimate: 10, distance: 100)
 }

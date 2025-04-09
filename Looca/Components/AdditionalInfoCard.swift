@@ -8,6 +8,11 @@
 import SwiftUI
 
 struct AdditionalInfoCard: View {
+    var bestDish: String
+    var atmosphere: String
+    var priceRange: String
+    var frequency: String
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack {
@@ -17,8 +22,9 @@ struct AdditionalInfoCard: View {
                     Text("Best Dish").fontWeight(.semibold)
                 }
                 Spacer()
-                Text("Mie Ayam Kasturi")
+                Text(bestDish)
                     .font(.subheadline)
+                    .multilineTextAlignment(.trailing)
             }
             HStack {
                 HStack {
@@ -27,8 +33,9 @@ struct AdditionalInfoCard: View {
                     Text("Atmosphere").fontWeight(.semibold)
                 }
                 Spacer()
-                Text("Cozy & Comfy")
+                Text(atmosphere)
                     .font(.subheadline)
+                    .multilineTextAlignment(.trailing)
             }
             HStack {
                 HStack {
@@ -37,8 +44,9 @@ struct AdditionalInfoCard: View {
                     Text("Budget").fontWeight(.semibold)
                 }
                 Spacer()
-                Text("IDR 15.000 - 35.000")
+                Text(priceRange)
                     .font(.subheadline)
+                    .multilineTextAlignment(.trailing)
             }
             HStack {
                 HStack {
@@ -47,8 +55,9 @@ struct AdditionalInfoCard: View {
                     Text("Frequency").fontWeight(.semibold)
                 }
                 Spacer()
-                Text("Moderately Busy")
+                Text(frequency)
                     .font(.subheadline)
+                    .multilineTextAlignment(.trailing)
             }
         }
         .padding()
@@ -56,5 +65,5 @@ struct AdditionalInfoCard: View {
 }
 
 #Preview {
-    AdditionalInfoCard()
+    AdditionalInfoCard(bestDish: "Nasi Goreng Kampung", atmosphere: "Traditional Warung Vibes", priceRange: "IDR 40.000 – 240.000", frequency: "Gets Busy at Lunch")
 }

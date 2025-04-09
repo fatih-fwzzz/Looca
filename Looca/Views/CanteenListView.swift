@@ -23,60 +23,58 @@ struct CanteenListView: View {
     ]
     
     var body: some View {
-        ScrollView(.vertical, showsIndicators: false) {
-            HStack(spacing: 16) {
-                // First Vertical List (Left side)
-                VStack(spacing: 16) {
-                    ForEach(0..<items.count / 2, id: \.self) { index in
-                        VStack {
-                            Image("restaurant") // Replace with your image asset or dynamic image
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: 150, height: 150)
-                                .cornerRadius(8)
-                            
-                            Text(items[index])
-                                .font(.headline)
-                            
-                            Text("Javanese Tenant")
-                                .font(.subheadline)
-                                .foregroundColor(.gray)
-                            
-                            Text("Rp 20.000 - 40.000")
-                                .font(.subheadline)
-                                .foregroundColor(.green)
-                        }
-                        .frame(width: 150)
+        HStack(spacing: 16) {
+            // First Vertical List (Left side)
+            VStack(spacing: 16) {
+                ForEach(0..<items.count / 2, id: \.self) { index in
+                    VStack {
+                        Image("restaurant") // Replace with your image asset or dynamic image
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 150, height: 150)
+                            .cornerRadius(8)
+                        
+                        Text(items[index])
+                            .font(.headline)
+                        
+                        Text("Javanese Tenant")
+                            .font(.subheadline)
+                            .foregroundColor(.gray)
+                        
+                        Text("Rp 20.000 - 40.000")
+                            .font(.subheadline)
+                            .foregroundColor(.green)
                     }
-                }
-                
-                // Second Vertical List (Right side)
-                VStack(spacing: 16) {
-                    ForEach(items.count / 2..<items.count, id: \.self) { index in
-                        VStack {
-                            Image("restaurant") // Replace with your image asset or dynamic image
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: 150, height: 150)
-                                .cornerRadius(8)
-                            
-                            Text(items[index])
-                                .font(.headline)
-                            
-                            Text("Indonesian Tenant")
-                                .font(.subheadline)
-                                .foregroundColor(.gray)
-                            
-                            Text("Rp 30.000 - 50.000")
-                                .font(.subheadline)
-                                .foregroundColor(.green)
-                        }
-                        .frame(width: 150)
-                    }
+                    .frame(width: 150)
                 }
             }
-            .padding()
+            
+            // Second Vertical List (Right side)
+            VStack(spacing: 16) {
+                ForEach(items.count / 2..<items.count, id: \.self) { index in
+                    VStack {
+                        Image("restaurant") // Replace with your image asset or dynamic image
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 150, height: 150)
+                            .cornerRadius(8)
+                        
+                        Text(items[index])
+                            .font(.headline)
+                        
+                        Text("Indonesian Tenant")
+                            .font(.subheadline)
+                            .foregroundColor(.gray)
+                        
+                        Text("Rp 30.000 - 50.000")
+                            .font(.subheadline)
+                            .foregroundColor(.green)
+                    }
+                    .frame(width: 150)
+                }
+            }
         }
+
     }
 }
 

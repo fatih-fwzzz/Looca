@@ -2,64 +2,29 @@
     {
         "id": 1,
         "name": "GOP 1 Canteen",
+        "description": "Located in the basement of Traveloka Building",
         "latitude": -6.301458549442683,
         "longitude": 106.65057935323979,
         "image": "gop-9-image.jpg",
         "openHours": "17.00 - 20.00",
-        "estimationInMin": 5,
-        "distanceInKm": 1,
+        "estimationInMin": 10,
+        "distanceInMeters": 500,
+        "atmosphere": "Moderately Busy",
+        "bestDish": "Mie ayam Kasturi",
+        "priceRange": "IDR 15.000 - 30.000",
+        "frequency": "Small Space",
         "tenants": [
             {
                 "id": 1,
                 "name": "KFC",
                 "description": "This is kentucky fried chicken food",
-                "image": "kfc-fast-food.jpg",
-                "priceMin": 20000,
-                "priceMax": 40000,
-                "menus": [
-                    {
-                        "id": 1,
-                        "name": "Chicken Kentucky",
-                        "description": "This is a delicious Chicken kentucky",
-                        "image": "chicken-kentucky.jpg",
-                        "price": 20000,
-                        "bestSeller": true
-                    },
-                    {
-                        "id": 2,
-                        "name": "French fries",
-                        "description": "This is a delicious French fries",
-                        "image": "french-fries.jpg",
-                        "price": 40000,
-                        "bestSeller": false
-                    }
-                ]
+                "image": "kfc-fast-food.jpg"
             },
             {
                 "id": 2,
                 "name": "Burger King",
                 "description": "This is burgerrrssss food",
-                "image": "burger-king-image.jpg",
-                "priceMin": 50000,
-                "priceMax": 100000,
-                "menus": [
-                    {
-                        "id": 3,
-                        "name": "Cheese Burger",
-                        "description": "This is a delicious Cheese Burger",
-                        "image": "cheese-burger.jpg",
-                        "price": 500000,
-                        "bestSeller": false
-                    },
-                    {
-                        "id": 4,
-                        "name": "Beef Burger",
-                        "description": "This is a delicious Beef Burger",
-                        "image": "beef-burger.jpg",
-                        "price": 100000,
-                        "bestSeller": true
-                    }
-                ]
+                "image": "burger-king-image.jpg"
             }
         ],
         "directions": [
@@ -84,64 +49,29 @@
     {
         "id": 2,
         "name": "GOP 6 Canteen",
+        "description": "Located in the basement of Sinarmas Land Building",
         "latitude": -6.30243,
         "longitude": 106.65225,
-        "image": "gop-7-image.jpg",
+        "image": "gop-6-image.jpg",
         "openHours": "10.00 - 22.00",
         "estimationInMin": 7,
-        "distanceInKm": 0.8,
+        "distanceInMeters": 400,
+        "atmosphere": "Calm and Cozy",
+        "bestDish": "Nasi Goreng Kampung",
+        "priceRange": "IDR 10.000 - 25.000",
+        "frequency": "Medium Space",
         "tenants": [
             {
                 "id": 3,
                 "name": "Richeese Factory",
                 "description": "Cheesy spicy goodness for chicken lovers",
-                "image": "richeese-image.jpg",
-                "priceMin": 25000,
-                "priceMax": 60000,
-                "menus": [
-                    {
-                        "id": 5,
-                        "name": "Fire Chicken",
-                        "description": "Spicy chicken with signature cheese sauce",
-                        "image": "fire-chicken-image.jpg",
-                        "price": 45000,
-                        "bestSeller": true
-                    },
-                    {
-                        "id": 6,
-                        "name": "French Fries",
-                        "description": "Crispy fries with a cheesy twist",
-                        "image": "french-fries.jpg",
-                        "price": 25000,
-                        "bestSeller": false
-                    }
-                ]
+                "image": "richeese-image.jpg"
             },
             {
                 "id": 4,
                 "name": "A&W",
                 "description": "Root beer and fried chicken heaven",
-                "image": "aw-restaurant.jpg",
-                "priceMin": 30000,
-                "priceMax": 70000,
-                "menus": [
-                    {
-                        "id": 7,
-                        "name": "Mozza Burger",
-                        "description": "Juicy burger with melted mozzarella",
-                        "image": "mozza-burger-image.jpg",
-                        "price": 50000,
-                        "bestSeller": true
-                    },
-                    {
-                        "id": 8,
-                        "name": "Root Beer Float",
-                        "description": "Classic root beer with creamy vanilla ice cream",
-                        "image": "root-beer-image.jpg",
-                        "price": 30000,
-                        "bestSeller": false
-                    }
-                ]
+                "image": "aw-restaurant.jpg"
             }
         ],
         "directions": [
@@ -166,64 +96,29 @@
     {
         "id": 3,
         "name": "GOP 9 Canteen",
+        "description": "Located in the basement of Monash University's Building",
         "latitude": -6.30279,
         "longitude": 106.65321,
-        "image": "gop-7-image.jpg",
+        "image": "gop-9-image.jpg",
         "openHours": "10.00 - 22.00",
-        "estimationInMin": 7,
-        "distanceInKm": 0.8,
+        "estimationInMin": 5,
+        "distanceInMeters": 100,
+        "atmosphere": "Quiet in the morning, busier at lunch",
+        "bestDish": "Sate Padang Mak Ucih",
+        "priceRange": "IDR 12.000 - 28.000",
+        "frequency": "Large Space",
         "tenants": [
             {
                 "id": 3,
                 "name": "Richeese Factory",
                 "description": "Cheesy spicy goodness for chicken lovers",
-                "image": "richeese-image.jpg",
-                "priceMin": 25000,
-                "priceMax": 60000,
-                "menus": [
-                    {
-                        "id": 5,
-                        "name": "Fire Chicken",
-                        "description": "Spicy chicken with signature cheese sauce",
-                        "image": "fire-chicken-image.jpg",
-                        "price": 45000,
-                        "bestSeller": true
-                    },
-                    {
-                        "id": 6,
-                        "name": "French Fries",
-                        "description": "Crispy fries with a cheesy twist",
-                        "image": "french-fries.jpg",
-                        "price": 25000,
-                        "bestSeller": false
-                    }
-                ]
+                "image": "richeese-image.jpg"
             },
             {
                 "id": 4,
                 "name": "A&W",
                 "description": "Root beer and fried chicken heaven",
-                "image": "aw-restaurant.jpg",
-                "priceMin": 30000,
-                "priceMax": 70000,
-                "menus": [
-                    {
-                        "id": 7,
-                        "name": "Mozza Burger",
-                        "description": "Juicy burger with melted mozzarella",
-                        "image": "mozza-burger-image.jpg",
-                        "price": 50000,
-                        "bestSeller": true
-                    },
-                    {
-                        "id": 8,
-                        "name": "Root Beer Float",
-                        "description": "Classic root beer with creamy vanilla ice cream",
-                        "image": "root-beer-image.jpg",
-                        "price": 30000,
-                        "bestSeller": false
-                    }
-                ]
+                "image": "aw-restaurant.jpg"
             }
         ],
         "directions": [

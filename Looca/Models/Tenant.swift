@@ -12,7 +12,4 @@ struct Tenant: Identifiable, Codable {
     var name: String
     var description: String
     var image: String
-    var priceMin: Int
-    var priceMax: Int
-    var menus: [Menu]
 }

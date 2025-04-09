@@ -18,16 +18,17 @@ class CanteenViewModel: ObservableObject {
         CanteenData.fetchCanteens { [weak self] canteens in
             DispatchQueue.main.async {
                 self?.canteens = canteens
-                //                print("Decoded canteens direction: \(canteens)")
+                print("Decoded canteens: \(canteens)")
+                print("")
                 
                 // Print the directions for each canteen
-                for canteen in canteens {
-                    print("Directions for \(canteen.name):")
-                    for direction in canteen.directions {
-//                        print("- \(direction.description) after \(direction.afterMeters) meters")
-                        print("Decoded directions: \(direction)")
-                    }
-                }
+                //                for canteen in canteens {
+                //                    print("Directions for \(canteen.name):")
+                //                    for direction in canteen.directions {
+                ////                        print("- \(direction.description) after \(direction.afterMeters) meters")
+                //                        print("Decoded directions: \(direction)")
+                //                    }
+                //                }
             }
         }
     }

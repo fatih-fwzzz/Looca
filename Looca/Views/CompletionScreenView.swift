@@ -10,13 +10,15 @@ import SwiftUI
 struct CompletionScreenView: View {
     @Binding var showBackPage: Bool
     
+    var gopName: String
+    
     var onBack: (() -> Void)? = nil
     @Environment(\.dismiss) var dismiss
     
             var body: some View {
                 VStack() {
                     Spacer()
-                    Text("GOP 9")
+                    Text(gopName)
                         .font(.largeTitle)
                         .bold()
                         .foregroundColor(Color("MainColor"))
@@ -53,10 +55,11 @@ struct CompletionScreenView: View {
                 }
                 .padding()
                 .padding()
+                .background(Color("BackgroundColor"))
             }
         }
 
 
 #Preview {
-    CompletionScreenView(showBackPage: .constant(true))
+    CompletionScreenView(showBackPage: .constant(true), gopName: "GOP 9 Canteen")
 }

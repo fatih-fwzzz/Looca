@@ -16,7 +16,7 @@ struct NavigateButton: View {
                 
         }
         .font(.headline)
-        .foregroundColor(.white)
+        .foregroundColor(Color("BackgroundColor"))
         .padding()
         .frame(maxWidth: .infinity)
         .background(Color("MainColor"))
