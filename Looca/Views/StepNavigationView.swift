@@ -17,6 +17,11 @@ struct StepNavigationView: View {
     @Binding var showCompletionScreen: Bool
     @Binding var showStepNavigationView: Bool
     
+    @State private var region = MKCoordinateRegion(
+        center: CLLocationCoordinate2D(latitude: -6.364, longitude: 106.828),
+        span: MKCoordinateSpan(latitudeDelta: 0.002, longitudeDelta: 0.002)
+    )
+    
     let canteen: Canteen
     
     var currentStep: DirectionStep {
@@ -25,15 +30,17 @@ struct StepNavigationView: View {
     
     var body: some View {
         ZStack {
-            Map{
-                Annotation("You Are Here" ,coordinate: currentStep.coordinate){
-                    Image("loocaPin") // 👈 your custom image from Assets.xcassets
-                        .resizable()
-                        .frame(width: 69, height: 93)
-                        .offset(x: 0, y: 20)
-                        
+            Map {
+                if !directionSteps.isEmpty {
+                    
+                    Annotation("GOP 9 Canteen", coordinate: currentStep.coordinate){
+                        Image("loocaPin") // 👈 your custom image from Assets.xcassets
+                            .resizable()
+                            .frame(width: 69, height: 93)
+                            .offset(x: 0, y: 20)
+                    }
+                    
                 }
-                
             }
             .ignoresSafeArea(edges: .all)
             
@@ -47,10 +54,15 @@ struct StepNavigationView: View {
                                 .resizable()
                                 .frame(width: 28, height: 28)
                                 .foregroundColor(Color.white)
-                            Text("after \(currentStep.afterMeters)")
-                                .font(.caption)
-                                .foregroundColor(.white.opacity(0.8))
-                            
+                            VStack(alignment: .leading) {
+                                Text(currentStep.description)
+                                    .font(.headline)
+                                    .foregroundColor(Color.white)
+                                Text("after \(currentStep.afterMeters)")
+                                    .font(.caption)
+                                    .foregroundColor(.white.opacity(0.8))
+                            }
+                            Spacer()
                         }
                         .padding(.bottom, 5)
                         
@@ -65,7 +77,7 @@ struct StepNavigationView: View {
                             Button(action: {
                                 if currentStepIndex > 0 {
                                     withAnimation {
-                                        currentStepIndex -= 1
+                                        self.currentStepIndex -= 1
                                     }
                                 }
                             }) {
@@ -81,7 +93,7 @@ struct StepNavigationView: View {
                             
                             Button(action: {
                                 if currentStepIndex < directionSteps.count - 1 {
-                                    withAnimation { currentStepIndex += 1 }
+                                    withAnimation { self.currentStepIndex += 1 }
                                 } else {
                                     withAnimation {
                                         showCompletionScreen = true
@@ -118,7 +130,6 @@ struct StepNavigationView: View {
                 )
             }
         }
-        
     }
     
     func getArrowIcon(for description: String) -> String {
