@@ -76,7 +76,7 @@ struct ContentView: View {
             
             if showStepNavigationView {
                 if let selectedCanteen = viewModel.canteens.first(where: { $0.id == selectedPage.selectedPage }) {
-                    StepNavigationView(showCompletionScreen: $showCompletionScreen, showStepNavigationView: $showStepNavigationView, canteen: selectedCanteen)
+                    StepNavigationView(showCompletionScreen: $showCompletionScreen, showStepNavigationView: $showStepNavigationView, showCanteenInfoSheet: $showCanteenInfoSheet, canteen: selectedCanteen)
                         .transition(.move(edge: .bottom))
                         .zIndex(1)
                 } else {

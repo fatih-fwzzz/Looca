@@ -30,19 +30,147 @@
         "directions": [
             {
                 "id": 1,
-                "description": "Turn Left at Parking Lot GOP 9",
-                "afterMeters": 500,
-                "image": "parking lot",
-                "latitude": -6.301458549442683,
-                "longitude": 106.65057935323979
+                "description": "Turn Right in Front of Apple Developer Academy",
+                "afterMeters": 0,
+                "latitude": -6.30215,
+                "longitude": 106.65231,
+                "image": "1GOP1"
             },
             {
                 "id": 2,
-                "description": "Turn right at Escalator",
-                "afterMeters": 600,
-                "image": "parking lot",
-                "latitude": -6.30243,
-                "longitude": 106.65225
+                "description": "Turn Left at the Park",
+                "afterMeters": 35,
+                "latitude": -6.30189,
+                "longitude": 106.65214,
+                "image": "2GOP1"
+            },
+            {
+                "id": 3,
+                "description": "Continue Straight at the Park",
+                "afterMeters": 13,
+                "latitude": -6.30198,
+                "longitude": 106.65208,
+                "image": "3GOP1"
+            },
+            {
+                "id": 4,
+                "description": "Slide Right at the Park and facing to Sinarmas Building",
+                "afterMeters": 36,
+                "latitude": -6.30197,
+                "longitude": 106.65176,
+                "image": "4GOP1"
+            },
+            {
+                "id": 5,
+                "description": "Continue Straight following the sidewalk with the roof",
+                "afterMeters": 12,
+                "latitude": -6.30193,
+                "longitude": 106.65166,
+                "image": "5GOP1"
+            },
+            {
+                "id": 6,
+                "description": "Turn Right to the sidewalk",
+                "afterMeters": 57,
+                "latitude": -6.30199,
+                "longitude": 106.65115,
+                "image": "6GOP1"
+            },
+            {
+                "id": 7,
+                "description": "Turn Left to the Zebra Cross",
+                "afterMeters": 29,
+                "latitude": -6.30179,
+                "longitude": 106.65099,
+                "image": "7GOP1"
+            },
+            {
+                "id": 8,
+                "description": "Continue Straight and Cross the Walk",
+                "afterMeters": 11,
+                "latitude": -6.30184,
+                "longitude": 106.65091,
+                "image": "8GOP1"
+            },
+            {
+                "id": 9,
+                "description": "Turn Left to the Traveloka Campus Building",
+                "afterMeters": 17,
+                "latitude": -6.30184,
+                "longitude": 106.65076,
+                "image": "9GOP1"
+            },
+            {
+                "id": 10,
+                "description": "Turn Right at the in front of CIMB NIAGA Bank",
+                "afterMeters": 23,
+                "latitude": -6.30186,
+                "longitude": 106.65056,
+                "image": "10GOP1"
+            },
+            {
+                "id": 11,
+                "description": "Turn Left to the Traveloka Campus area",
+                "afterMeters": 17,
+                "latitude": -6.30188,
+                "longitude": 106.65041,
+                "image": "11GOP1"
+            },
+            {
+                "id": 12,
+                "description": "Turn Left and go inside to the GOP 1 south door",
+                "afterMeters": 32,
+                "latitude": -6.30160,
+                "longitude": 106.65035,
+                "image": "12GOP1"
+            },
+            {
+                "id": 13,
+                "description": "Slide Left heading to Downstairs",
+                "afterMeters": 32,
+                "latitude": -6.30180,
+                "longitude": 106.65015,
+                "image": "13GOP1"
+            },
+            {
+                "id": 14,
+                "description": "Continue Straight to the Downstairs",
+                "afterMeters": 8,
+                "latitude": -6.30183,
+                "longitude": 106.65009,
+                "image": "14GOP1"
+            },
+            {
+                "id": 15,
+                "description": "Make a U turn to the second Downstairs",
+                "afterMeters": 3,
+                "latitude": -6.30184,
+                "longitude": 106.65007,
+                "image": "15GOP1"
+            },
+            {
+                "id": 16,
+                "description": "Turn Left to the Basement door",
+                "afterMeters": 5,
+                "latitude": -6.30181,
+                "longitude": 106.65010,
+                "image": "16GOP1"
+            },
+            {
+                "id": 17,
+                "description": "Turn Right at the Basement after the passed door",
+                "afterMeters": 5,
+                "latitude": -6.30182,
+                "longitude": 106.65014,
+                "image": "17GOP1"
+            },
+            {
+                "id": 18,
+                "description": "Continue Straight heading to GOP 1 Canteen Entrance",
+                "afterMeters": 27,
+                "latitude": -6.30181,
+                "longitude": 106.65038,
+                "image": "18GOP1"
             }
         ]
     },
@@ -76,20 +204,100 @@
         ],
         "directions": [
             {
-                "id": 3,
-                "description": "Go straight from GOP 9 lobby and pass the ATM Center",
-                "afterMeters": 300,
-                "image": "atm-center.jpg",
-                "latitude": -6.30193,
-                "longitude": 106.65166
+                "id": 19,
+                "description": "Turn Right in Front of Apple Developer Academy",
+                "afterMeters": 0,
+                "latitude": -6.30213,
+                "longitude": 106.65212,
+                "image": "1GOP6"
             },
             {
-                "id": 4,
-                "description": "Turn left at the Food Hall entrance",
-                "afterMeters": 200,
-                "image": "food-hall-entrance.jpg",
-                "latitude": 6.30193,
-                "longitude": 106.65166
+                "id": 20,
+                "description": "Turn Right to follow curved path between the grass",
+                "afterMeters": 16,
+                "latitude": -6.30220,
+                "longitude": 106.65219,
+                "image": "2GOP6"
+            },
+            {
+                "id": 21,
+                "description": "Keep Straight Following the Road",
+                "afterMeters": 30,
+                "latitude": -6.30177,
+                "longitude": 106.65228,
+                "image": "3GOP6"
+            },
+            {
+                "id": 22,
+                "description": "At the end of the road, take stairs to go to the downstairs",
+                "afterMeters": 15,
+                "latitude": -6.30192,
+                "longitude": 106.65262,
+                "image": "4GOP6"
+            },
+            {
+                "id": 23,
+                "description": "Cross the Road at the Zebra Cross",
+                "afterMeters": 20,
+                "latitude": -6.30211,
+                "longitude": 106.65283,
+                "image": "5GOP6"
+            },
+            {
+                "id": 24,
+                "description": "Turn Right After The Zebra Cross",
+                "afterMeters": 30,
+                "latitude": -6.30209,
+                "longitude": 106.65299,
+                "image": "6GOP6"
+            },
+            {
+                "id": 25,
+                "description": "Continue Straight Following the Zebra Cross",
+                "afterMeters": 15,
+                "latitude": -6.30226,
+                "longitude": 106.65293,
+                "image": "7GOP6"
+            },
+            {
+                "id": 26,
+                "description": "Turn Left after crossing the Zebra Cross",
+                "afterMeters": 10,
+                "latitude": -6.30247,
+                "longitude": 106.65291,
+                "image": "8GOP6"
+            },
+            {
+                "id": 27,
+                "description": "Continue Straight Following the Road",
+                "afterMeters": 10,
+                "latitude": -6.30241,
+                "longitude": 106.65287,
+                "image": "9GOP6"
+            },
+            {
+                "id": 28,
+                "description": "Turn Right at the GOP 9 Entrance Gate",
+                "afterMeters": 25,
+                "latitude": -6.30247,
+                "longitude": 106.65305,
+                "image": "10GOP6"
+            },
+            {
+                "id": 29,
+                "description": "Continue Straight Following the Road",
+                "afterMeters": 30,
+                "latitude": -6.30257,
+                "longitude": 106.65314,
+                "image": "11GOP6"
+            },
+            {
+                "id": 30,
+                "description": "Turn Right to Enter GOP 6 Canteen Entrance",
+                "afterMeters": 10,
+                "latitude": -6.30276,
+                "longitude": 106.65323,
+                "image": "12GOP6"
             }
         ]
     },
@@ -123,20 +331,52 @@
         ],
         "directions": [
             {
-                "id": 3,
-                "description": "Go straight from GOP 9 lobby and pass the ATM Center",
-                "afterMeters": 300,
-                "image": "atm-center.jpg",
-                "latitude": 6.30193,
-                "longitude": 106.65166
+                "id": 31,
+                "description": "Turn Left in Front of Apple Developer Academy",
+                "afterMeters": 0,
+                "latitude": -6.30216,
+                "longitude": 106.65223,
+                "image": "1GOP9"
             },
             {
-                "id": 4,
-                "description": "Turn left at the Food Hall entrance",
-                "afterMeters": 200,
-                "image": "food-hall-entrance.jpg",
-                "latitude": -6.30193,
-                "longitude": 106.65166
+                "id": 32,
+                "description": "Keep walking Straight enter the Gate",
+                "afterMeters": 25,
+                "latitude": -6.30232,
+                "longitude": 106.65207,
+                "image": "2GOP9"
+            },
+            {
+                "id": 33,
+                "description": "Keep Straight head down with the Lift or using staircase to go down floor",
+                "afterMeters": 14,
+                "latitude": -6.30226,
+                "longitude": 106.65218,
+                "image": "3GOP9"
+            },
+            {
+                "id": 34,
+                "description": "Turn left after exiting the building using the exit gate",
+                "afterMeters": 19,
+                "latitude": -6.30221,
+                "longitude": 106.65234,
+                "image": "4GOP9"
+            },
+            {
+                "id": 35,
+                "description": "Keep Straight walking down straight passing by “Alfamart”",
+                "afterMeters": 19,
+                "latitude": -6.30238,
+                "longitude": 106.65231,
+                "image": "5GOP9"
+            },
+            {
+                "id": 36,
+                "description": "Enter the Door toward “Green Eatery”",
+                "afterMeters": 29,
+                "latitude": -6.30212,
+                "longitude": 106.65228,
+                "image": "6GOP9"
             }
         ]
     }

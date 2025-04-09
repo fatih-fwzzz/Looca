@@ -16,6 +16,7 @@ struct StepNavigationView: View {
     @State private var currentStepIndex = 0
     @Binding var showCompletionScreen: Bool
     @Binding var showStepNavigationView: Bool
+    @Binding var showCanteenInfoSheet: Bool
     
     @State private var region = MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: -6.364, longitude: 106.828),
@@ -79,6 +80,9 @@ struct StepNavigationView: View {
                                     withAnimation {
                                         self.currentStepIndex -= 1
                                     }
+                                } else {
+                                    showStepNavigationView = false
+                                    showCanteenInfoSheet = true
                                 }
                             }) {
                                 Text("< Previously")
