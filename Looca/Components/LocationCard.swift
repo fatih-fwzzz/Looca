@@ -13,9 +13,10 @@ struct LocationCard: View {
     
     var body: some View {
             HStack{
-                Image(systemName: "signpost.left")
+                Image("pinpoint")
                     .resizable()
-                    .frame(width: 32, height: 32)
+                    .scaledToFill()
+                    .frame(width: 40, height: 40)
                 VStack(alignment: .leading) {
                     Text(locationName)
                         .font(.headline)
