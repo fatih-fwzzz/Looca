@@ -16,4 +16,5 @@ struct DirectionStep: Identifiable {
     let image: String
     let arrow: String
     let coordinate: CLLocationCoordinate2D
+    
 }

@@ -32,7 +32,7 @@ struct ContentView: View {
     @State private var showStepNavigationView = false
     @State private var showCompletionScreen = false
     
-    @State private var selectedDetent: PresentationDetent = .medium
+    @State private var selectedDetent: PresentationDetent = .fraction(0.6)
     
     @State private var selectedCanteenLocation: Int = 0// default selected canteen
     
@@ -49,7 +49,7 @@ struct ContentView: View {
             ZStack {
                 Map(initialPosition: .region(
                     MKCoordinateRegion(
-                        center: CLLocationCoordinate2D(latitude: CLLocationCoordinate2D.gopNineCanteen.latitude - 0.001,
+                        center: CLLocationCoordinate2D(latitude: CLLocationCoordinate2D.gopNineCanteen.latitude - 0.002,
                                                        longitude: CLLocationCoordinate2D.gopNineCanteen.longitude),
                         span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
                     )
@@ -90,9 +90,14 @@ struct ContentView: View {
                 }
                 
                 if showStepNavigationView {
-                    StepNavigationView(stepCoordinate: $stepCoordinate, showStepNavigationView: $showStepNavigationView, showCompletionScreen: $showCompletionScreen)
-                        .transition(.move(edge: .bottom))
-                        .zIndex(1)
+                    if let selectedCanteen = viewModel.canteens.first(where: { $0.id == selectedPage.selectedPage }) {
+                        StepNavigationView(showCompletionScreen: $showCompletionScreen, showStepNavigationView: $showStepNavigationView, canteen: selectedCanteen)
+                            .transition(.move(edge: .bottom))
+                            .zIndex(1)
+                    } else {
+                        Text("Selected Canteen: \(selectedPage.selectedPage)")
+                    }
+                    
                     
                 }
             }
@@ -106,7 +111,7 @@ struct ContentView: View {
         // first sheet
         .sheet(isPresented: $showLocationListSheet) {
             LocationListView(showLocationListSheet: $showLocationListSheet, showCanteenInfoSheet: $showCanteenInfoSheet, path: $path, selectedDetent: $selectedDetent, selectedCanteenLocation: $selectedCanteenLocation, selectedPage: selectedPage, canteens: viewModel.canteens)
-                .presentationDetents([.medium, .large], selection: $selectedDetent)
+                .presentationDetents([.fraction(0.6), .large], selection: $selectedDetent)
                 .presentationDragIndicator(.visible)
                 .presentationBackgroundInteraction(.enabled)
         }
@@ -115,36 +120,9 @@ struct ContentView: View {
         .sheet(isPresented: $showCanteenInfoSheet){
             // this is the detail of the selected canteen location
             CanteenInfoView(path: $path, showLocationListSheet: $showLocationListSheet, showCanteenInfoSheet: $showCanteenInfoSheet, showStepNavigationView: $showStepNavigationView, selectedDetent: $selectedDetent, selectedCanteenLocation: $selectedCanteenLocation, canteens: viewModel.canteens)
-                .presentationDetents([.medium, .large], selection: $selectedDetent)
+                .presentationDetents([.fraction(0.6), .large], selection: $selectedDetent)
                 .presentationDragIndicator(.visible)
         }
-        
-        
-        
-        
-        
-        // third sheet
-        /*.sheet(isPresented: $showStepNavigationView) {
-         
-         
-         if let selectedCanteen = viewModel.canteens.first(where: { $0.id == selectedPage.selectedPage }) {
-         NavView(showNavSheet: $showNavSheet, showCanteenInfoSheet: $showCanteenInfoSheet, canteen: selectedCanteen)
-         .presentationDetents([.medium, .large], selection: $selectedDetent)
-         .presentationDragIndicator(.visible)
-         } else {
-         VStack {
-         Text("Nothing")
-         Text("selectedCanteenLocation: \(selectedCanteenLocation)")
-         Text("viewModel.canteens: \(viewModel.canteens)")
-         }
-         .presentationDetents([.medium, .large], selection: $selectedDetent)
-         .presentationDragIndicator(.visible)
-         }
-         }
-         */
-        
-        
-        
     }
 }
 
