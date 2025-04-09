@@ -29,48 +29,63 @@ struct ContentView: View {
     
     @State private var showLocationListSheet = true
     @State private var showCanteenInfoSheet = false
-    @State private var showNavSheet = false
-    @State private var showAll = false
+    @State private var showStepNavigationView = false
+    @State private var showCompletionScreen = false
     
     @State private var selectedDetent: PresentationDetent = .medium
     
     @State private var selectedCanteenLocation: Int = 0// default selected canteen
+    
+    @State private var stepCoordinate = CLLocationCoordinate2D(
+           latitude: CLLocationCoordinate2D.gopNineCanteen.latitude,
+           longitude: CLLocationCoordinate2D.gopNineCanteen.longitude
+       )
     
     // MARK: -- Disini initiate si observable object-nya
     @StateObject private var selectedPage: SelectedPage = .init()
     
     var body: some View {
         NavigationStack(path: $path){
-            Map(initialPosition: .region(
-                MKCoordinateRegion(
-                    center: CLLocationCoordinate2D(latitude: CLLocationCoordinate2D.gopNineCanteen.latitude - 0.001,
-                                                   longitude: CLLocationCoordinate2D.gopNineCanteen.longitude),
-                    span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
-                )
-            )){
-                Marker("GOP 9 Canteen", coordinate: .gopNineCanteen)
-                Marker("GOP 1 Canteen", coordinate: .gopOneCanteen)
-                Marker("GOP 6 Canteen", coordinate: .gopSixCanteen)
-            }
-            .ignoresSafeArea()
-            .navigationBarHidden(true)
-            .navigationDestination(for: Int.self) { num in
-                // it should be a view that consist of the menu's list of selected canteen
-                // Show detail page after dismissing the sheet
-//                Text("GOP \(num) Canteen information")
-                CanteenListView()
-                
-                    .onDisappear {
-                        if path.isEmpty {
-                            showCanteenInfoSheet = true
+            ZStack {
+                Map(initialPosition: .region(
+                    MKCoordinateRegion(
+                        center: CLLocationCoordinate2D(latitude: CLLocationCoordinate2D.gopNineCanteen.latitude - 0.001,
+                                                       longitude: CLLocationCoordinate2D.gopNineCanteen.longitude),
+                        span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
+                    )
+                )){
+                    Marker("GOP 9 Canteen", coordinate: .gopNineCanteen)
+                    Marker("GOP 1 Canteen", coordinate: .gopOneCanteen)
+                    Marker("GOP 6 Canteen", coordinate: .gopSixCanteen)
+                }
+                .ignoresSafeArea(edges: .all)
+                .navigationBarHidden(true)
+                .navigationDestination(for: Int.self) { num in
+                    CanteenListView()
+                        .onDisappear {
+                            if path.isEmpty {
+                                showCanteenInfoSheet = true
+                            }
                         }
+                }
+                .onChange(of: path){_, newPath in
+                    if newPath.isEmpty {
+                        showCanteenInfoSheet = true
                     }
-            }
-            .onChange(of: path){_, newPath in
-                if newPath.isEmpty {
-                    showCanteenInfoSheet = true
+                }
+                
+                if showStepNavigationView {
+                    StepNavigationView(stepCoordinate: $stepCoordinate, showStepNavigationView: $showStepNavigationView, showCompletionScreen: $showCompletionScreen)
+                        .transition(.move(edge: .bottom))
+                        .zIndex(1)
+                    
                 }
             }
+            
+            .fullScreenCover(isPresented: $showCompletionScreen) {
+                CompletionScreenView(showBackPage: $showLocationListSheet)
+            }
+            
         }
         
         // first sheet
@@ -84,32 +99,34 @@ struct ContentView: View {
         // second sheet
         .sheet(isPresented: $showCanteenInfoSheet){
             // this is the detail of the selected canteen location
-            CanteenInfoView(path: $path, showLocationListSheet: $showLocationListSheet, showCanteenInfoSheet: $showCanteenInfoSheet, showNavSheet: $showNavSheet, selectedDetent: $selectedDetent, selectedCanteenLocation: $selectedCanteenLocation, canteens: viewModel.canteens)
+            CanteenInfoView(path: $path, showLocationListSheet: $showLocationListSheet, showCanteenInfoSheet: $showCanteenInfoSheet, showStepNavigationView: $showStepNavigationView, selectedDetent: $selectedDetent, selectedCanteenLocation: $selectedCanteenLocation, canteens: viewModel.canteens)
                 .presentationDetents([.medium, .large], selection: $selectedDetent)
                 .presentationDragIndicator(.visible)
         }
         
+        
+        
+        
+        
         // third sheet
-        // Third sheet
-        .sheet(isPresented: $showNavSheet) {
-            // Debugging the values
-            //            print("selectedCanteenLocation: \(selectedCanteenLocation)")
-            //            print("viewModel.canteens: \(viewModel.canteens)")
-            
-            if let selectedCanteen = viewModel.canteens.first(where: { $0.id == selectedPage.selectedPage }) {
-                NavView(showNavSheet: $showNavSheet, showCanteenInfoSheet: $showCanteenInfoSheet, canteen: selectedCanteen)
-                    .presentationDetents([.medium, .large], selection: $selectedDetent)
-                    .presentationDragIndicator(.visible)
-            } else {
-                VStack {
-                    Text("Nothing")
-                    Text("selectedCanteenLocation: \(selectedCanteenLocation)")
-                    Text("viewModel.canteens: \(viewModel.canteens)")
-                }
-                .presentationDetents([.medium, .large], selection: $selectedDetent)
-                .presentationDragIndicator(.visible)
-            }
-        }
+        /*.sheet(isPresented: $showStepNavigationView) {
+         
+         
+         if let selectedCanteen = viewModel.canteens.first(where: { $0.id == selectedPage.selectedPage }) {
+         NavView(showNavSheet: $showNavSheet, showCanteenInfoSheet: $showCanteenInfoSheet, canteen: selectedCanteen)
+         .presentationDetents([.medium, .large], selection: $selectedDetent)
+         .presentationDragIndicator(.visible)
+         } else {
+         VStack {
+         Text("Nothing")
+         Text("selectedCanteenLocation: \(selectedCanteenLocation)")
+         Text("viewModel.canteens: \(viewModel.canteens)")
+         }
+         .presentationDetents([.medium, .large], selection: $selectedDetent)
+         .presentationDragIndicator(.visible)
+         }
+         }
+         */
         
         
         
