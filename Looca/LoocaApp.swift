@@ -14,13 +14,7 @@ struct LoocaApp: App {
     
     var body: some Scene {
         WindowGroup {
-            
-            if !firstLaunch {
-                ContentView()
-            } else {
-                OnboardView()
-            }
-            
+            ContentView()
         }
     }
 }

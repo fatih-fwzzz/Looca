@@ -12,4 +12,6 @@ struct Direction: Identifiable, Codable {
     var description: String
     var afterMeters: Int
     var image: String
+    var latitude: Double
+    var longitude: Double
 }

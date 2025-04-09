@@ -67,13 +67,17 @@
                 "id": 1,
                 "description": "Turn Left at Parking Lot GOP 9",
                 "afterMeters": 500,
-                "image": "parking-lot-one.jpg"
+                "image": "parking lot",
+                "latitude": -6.301458549442683,
+                "longitude": 106.65057935323979
             },
             {
                 "id": 2,
                 "description": "Turn right at Escalator",
                 "afterMeters": 600,
-                "image": "escalator-one.jpg"
+                "image": "parking lot",
+                "latitude": -6.30243,
+                "longitude": 106.65225
             }
         ]
     },
@@ -145,13 +149,17 @@
                 "id": 3,
                 "description": "Go straight from GOP 9 lobby and pass the ATM Center",
                 "afterMeters": 300,
-                "image": "atm-center.jpg"
+                "image": "atm-center.jpg",
+                "latitude": -6.30193,
+                "longitude": 106.65166
             },
             {
                 "id": 4,
                 "description": "Turn left at the Food Hall entrance",
                 "afterMeters": 200,
-                "image": "food-hall-entrance.jpg"
+                "image": "food-hall-entrance.jpg",
+                "latitude": 6.30193,
+                "longitude": 106.65166
             }
         ]
     },
@@ -223,13 +231,17 @@
                 "id": 3,
                 "description": "Go straight from GOP 9 lobby and pass the ATM Center",
                 "afterMeters": 300,
-                "image": "atm-center.jpg"
+                "image": "atm-center.jpg",
+                "latitude": 6.30193,
+                "longitude": 106.65166
             },
             {
                 "id": 4,
                 "description": "Turn left at the Food Hall entrance",
                 "afterMeters": 200,
-                "image": "food-hall-entrance.jpg"
+                "image": "food-hall-entrance.jpg",
+                "latitude": -6.30193,
+                "longitude": 106.65166
             }
         ]
     }

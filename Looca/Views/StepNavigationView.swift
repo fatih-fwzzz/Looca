@@ -8,142 +8,141 @@
 import SwiftUI
 import MapKit
 
+import SwiftUI
+import MapKit
+
 struct StepNavigationView: View {
-    @Binding var stepCoordinate: CLLocationCoordinate2D
-    
-    @State private var directionSteps: [DirectionStep] = [
-        DirectionStep(
-            description: "Turn right at Parking Lot GOP 9",
-            afterMeters: "200 meters",
-            image: "parking lot", // must be in Assets
-            arrow: "arrowshape.right.circle.fill",
-            coordinate: CLLocationCoordinate2D(latitude: -6.364, longitude: 106.828)
-        ),
-        DirectionStep(
-            description: "Walk straight Across Zebra Cross",
-            afterMeters: "150 meters",
-            image: "zebra cross",
-            arrow: "arrowshape.up.circle.fill",
-            coordinate: CLLocationCoordinate2D(latitude: -6.3635, longitude: 106.827)
-        )
-    ]
-    
+    @State private var directionSteps: [DirectionStep] = []
     @State private var currentStepIndex = 0
-    
-    @Binding var showStepNavigationView: Bool
     @Binding var showCompletionScreen: Bool
+    @Binding var showStepNavigationView: Bool
     
-    @State private var region = MKCoordinateRegion(
-        center: CLLocationCoordinate2D(latitude: -6.364, longitude: 106.828),
-        span: MKCoordinateSpan(latitudeDelta: 0.002, longitudeDelta: 0.002)
-        
-        
-    )
+    let canteen: Canteen
     
     var currentStep: DirectionStep {
         directionSteps[currentStepIndex]
     }
     
-    
-    //
     var body: some View {
         ZStack {
-            Map{
-                Marker("You are here" ,coordinate: currentStep.coordinate)
-                
+            Map {
+                if !directionSteps.isEmpty {
+                    Marker("You are here", coordinate: currentStep.coordinate)
+                }
             }
             .ignoresSafeArea(edges: .all)
             
-            VStack {
-                Spacer()
-                
+            if showStepNavigationView && !directionSteps.isEmpty {
                 VStack {
-                    HStack {
-                        Image(systemName: currentStep.arrow)
-                            .resizable()
-                            .frame(width: 28, height: 28)
-                            .foregroundColor(Color.white)
-                        VStack (alignment: .leading) {
-                            Text(currentStep.description)
-                                .font(.headline)
+                    Spacer()
+                    
+                    VStack {
+                        HStack {
+                            Image(systemName: currentStep.arrow)
+                                .resizable()
+                                .frame(width: 28, height: 28)
                                 .foregroundColor(Color.white)
-                            Text("after \(currentStep.afterMeters)")
-                                .font(.caption)
-                                .foregroundColor(.white.opacity(0.8))
-                            
+                            VStack(alignment: .leading) {
+                                Text(currentStep.description)
+                                    .font(.headline)
+                                    .foregroundColor(Color.white)
+                                Text("after \(currentStep.afterMeters)")
+                                    .font(.caption)
+                                    .foregroundColor(.white.opacity(0.8))
+                                Text("Latitude: \(currentStep.coordinate.latitude)")
+                                    .font(.caption)
+                                    .foregroundColor(Color.white)
+                                Text("Longitude: \(currentStep.coordinate.longitude)")
+                                    .font(.caption)
+                                    .foregroundColor(Color.white)
+                            }
+                            Spacer()
                         }
-                        Spacer()
-                    }
-                    .padding(.bottom, 5)
-                    Image(currentStep.image)
-                        .resizable()
-                        .scaledToFill()
-                        .frame(height: 120)
-                        .clipShape(RoundedRectangle(cornerRadius: 12))
                         .padding(.bottom, 5)
-                    HStack {
-                        Button(action: {
-                            if currentStepIndex > 0 {
-                                withAnimation {
-                                    currentStepIndex -= 1
-                                    stepCoordinate = directionSteps[currentStepIndex].coordinate
-                                }
-                            }
-                        }) {
-                            Text("< Previously")
-                                .font(.subheadline)
-                                .fontWeight(.semibold)
-                                .foregroundStyle(Color("MainColor"))
-                                .padding()
-                                .frame(maxWidth: .infinity, maxHeight: 40)
-                                .background(Color.white)
-                                .cornerRadius(12)
-                            
-                        }
                         
-                        Button(action: {
-                            if currentStepIndex < directionSteps.count - 1 {
-                                withAnimation { self.currentStepIndex += 1 }
-                            } else {
-                                withAnimation {
-                                    showCompletionScreen = true
-                                    showStepNavigationView = false
+                        Image(currentStep.image)
+                            .resizable()
+                            .scaledToFill()
+                            .frame(height: 120)
+                            .clipShape(RoundedRectangle(cornerRadius: 12))
+                            .padding(.bottom, 5)
+                        
+                        HStack {
+                            Button(action: {
+                                if currentStepIndex > 0 {
+                                    withAnimation {
+                                        currentStepIndex -= 1
+                                    }
                                 }
+                            }) {
+                                Text("< Previously")
+                                    .font(.subheadline)
+                                    .fontWeight(.semibold)
+                                    .foregroundStyle(Color("MainColor"))
+                                    .padding()
+                                    .frame(maxWidth: .infinity, maxHeight: 40)
+                                    .background(Color.white)
+                                    .cornerRadius(12)
                             }
-                        }) {
-                            Text(currentStepIndex < directionSteps.count - 1 ? "Next >" :"Finish")
-                                .font(.subheadline)
-                                .fontWeight(.semibold)
-                                .foregroundStyle(Color("MainColor"))
-                                .padding()
-                                .frame(maxWidth: .infinity, maxHeight: 40)
-                                .background(Color.white)
-                                .cornerRadius(12)
                             
+                            Button(action: {
+                                if currentStepIndex < directionSteps.count - 1 {
+                                    withAnimation { currentStepIndex += 1 }
+                                } else {
+                                    withAnimation {
+                                        showCompletionScreen = true
+                                        showStepNavigationView = false
+                                    }
+                                }
+                            }) {
+                                Text(currentStepIndex < directionSteps.count - 1 ? "Next >" : "Finish")
+                                    .font(.subheadline)
+                                    .fontWeight(.semibold)
+                                    .foregroundStyle(Color("MainColor"))
+                                    .padding()
+                                    .frame(maxWidth: .infinity, maxHeight: 40)
+                                    .background(Color.white)
+                                    .cornerRadius(12)
+                            }
                         }
                     }
+                    .padding()
+                    .background(Color("MainColor"))
+                    .clipShape(RoundedRectangle(cornerRadius: 16))
+                    .padding()
                 }
-                .padding()
-                .background(Color("MainColor"))
-                .clipShape(RoundedRectangle(cornerRadius:16))
-                .padding()
             }
-            .onAppear{
-                stepCoordinate = currentStep.coordinate
+        }
+        .onAppear {
+            directionSteps = canteen.directions.map { direction in
+                DirectionStep(
+                    description: direction.description,
+                    afterMeters: "\(direction.afterMeters) meters",
+                    image: direction.image,
+                    arrow: getArrowIcon(for: direction.description),
+                    coordinate: CLLocationCoordinate2D(latitude: direction.latitude, longitude: direction.longitude)
+                )
             }
-            
         }
         
+    }
+    
+    func getArrowIcon(for description: String) -> String {
+        let lower = description.lowercased()
+        if lower.contains("left") {
+            return "arrowshape.left.circle.fill"
+        } else if lower.contains("right") {
+            return "arrowshape.right.circle.fill"
+        } else if lower.contains("straight") || lower.contains("forward") {
+            return "arrowshape.up.circle.fill"
+        } else if lower.contains("back") {
+            return "arrowshape.down.circle.fill"
+        }
+        return "arrowshape.up.circle.fill"
     }
 }
 
 
 //#Preview {
-//    @State var sampleCoordinate = CLLocationCoordinate2D(latitude: -6.30243, longitude: 106.65225)
-//
-//       return StepNavigationView(
-//           stepCoordinate: $sampleCoordinate,
-//           showStepNavigationView: .constant(true),
-//           showCompletionScreen: .constant(false)
-//       )
+//    StepNavigationView(showCompletionScreen: <#T##Binding<Bool>#>, showStepNavigationView: <#T##Binding<Bool>#>, canteen: <#T##Canteen#>)
 //}
