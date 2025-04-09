@@ -34,8 +34,9 @@ struct StepNavigationView: View {
     @Binding var showCompletionScreen: Bool
     
     @State private var region = MKCoordinateRegion(
-        center: CLLocationCoordinate2D(latitude: -6.364, longitude: 106.828),
-        span: MKCoordinateSpan(latitudeDelta: 0.002, longitudeDelta: 0.002)
+        center: CLLocationCoordinate2D(latitude: CLLocationCoordinate2D.gopNineCanteen.latitude - 0.001,
+                                       longitude: CLLocationCoordinate2D.gopNineCanteen.longitude),
+        span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
         
         
     )
@@ -49,7 +50,13 @@ struct StepNavigationView: View {
     var body: some View {
         ZStack {
             Map{
-                Marker("You are here" ,coordinate: currentStep.coordinate)
+                Annotation("You Are Here" ,coordinate: currentStep.coordinate){
+                    Image("loocaPin") // 👈 your custom image from Assets.xcassets
+                        .resizable()
+                        .frame(width: 69, height: 93)
+                        .offset(x: 0, y: 20)
+                        
+                }
                 
             }
             .ignoresSafeArea(edges: .all)
@@ -138,12 +145,12 @@ struct StepNavigationView: View {
 }
 
 
-//#Preview {
-//    @State var sampleCoordinate = CLLocationCoordinate2D(latitude: -6.30243, longitude: 106.65225)
-//
-//       return StepNavigationView(
-//           stepCoordinate: $sampleCoordinate,
-//           showStepNavigationView: .constant(true),
-//           showCompletionScreen: .constant(false)
-//       )
-//}
+#Preview {
+    @Previewable @State var sampleCoordinate = CLLocationCoordinate2D(latitude: -6.30243, longitude: 106.65225)
+
+       return StepNavigationView(
+           stepCoordinate: $sampleCoordinate,
+           showStepNavigationView: .constant(true),
+           showCompletionScreen: .constant(false)
+       )
+}

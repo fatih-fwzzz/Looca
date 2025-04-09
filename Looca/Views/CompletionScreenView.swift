@@ -39,7 +39,7 @@ struct CompletionScreenView: View {
                     Button(action: {
                         onBack?()
                         dismiss()
-                        showBackPage.toggle()
+                        showBackPage = true
                     }) {
                         Text("Go Back to Starting Maps")
                             .font(.subheadline)
@@ -58,5 +58,5 @@ struct CompletionScreenView: View {
 
 
 #Preview {
-    CompletionScreenView()
+    CompletionScreenView(showBackPage: .constant(true))
 }
