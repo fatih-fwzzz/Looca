@@ -85,7 +85,7 @@ struct StepNavigationView: View {
                                     showCanteenInfoSheet = true
                                 }
                             }) {
-                                Text("< Previously")
+                                Text(currentStepIndex == 0 ? "Back" : "< Previously")
                                     .font(.subheadline)
                                     .fontWeight(.semibold)
                                     .foregroundStyle(Color("MainColor"))
