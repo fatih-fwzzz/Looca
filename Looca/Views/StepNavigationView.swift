@@ -25,10 +25,15 @@ struct StepNavigationView: View {
     
     var body: some View {
         ZStack {
-            Map {
-                if !directionSteps.isEmpty {
-                    Marker("You are here", coordinate: currentStep.coordinate)
+            Map{
+                Annotation("You Are Here" ,coordinate: currentStep.coordinate){
+                    Image("loocaPin") // 👈 your custom image from Assets.xcassets
+                        .resizable()
+                        .frame(width: 69, height: 93)
+                        .offset(x: 0, y: 20)
+                        
                 }
+                
             }
             .ignoresSafeArea(edges: .all)
             
@@ -42,21 +47,10 @@ struct StepNavigationView: View {
                                 .resizable()
                                 .frame(width: 28, height: 28)
                                 .foregroundColor(Color.white)
-                            VStack(alignment: .leading) {
-                                Text(currentStep.description)
-                                    .font(.headline)
-                                    .foregroundColor(Color.white)
-                                Text("after \(currentStep.afterMeters)")
-                                    .font(.caption)
-                                    .foregroundColor(.white.opacity(0.8))
-                                Text("Latitude: \(currentStep.coordinate.latitude)")
-                                    .font(.caption)
-                                    .foregroundColor(Color.white)
-                                Text("Longitude: \(currentStep.coordinate.longitude)")
-                                    .font(.caption)
-                                    .foregroundColor(Color.white)
-                            }
-                            Spacer()
+                            Text("after \(currentStep.afterMeters)")
+                                .font(.caption)
+                                .foregroundColor(.white.opacity(0.8))
+                            
                         }
                         .padding(.bottom, 5)
                         

@@ -9,9 +9,6 @@ import SwiftUI
 
 @main
 struct LoocaApp: App {
-    
-    @AppStorage("firstLaunch") var firstLaunch = false
-    
     var body: some Scene {
         WindowGroup {
             ContentView()

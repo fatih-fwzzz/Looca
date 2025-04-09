@@ -54,9 +54,24 @@ struct ContentView: View {
                         span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
                     )
                 )){
-                    Marker("GOP 9 Canteen", coordinate: .gopNineCanteen)
-                    Marker("GOP 1 Canteen", coordinate: .gopOneCanteen)
-                    Marker("GOP 6 Canteen", coordinate: .gopSixCanteen)
+                    Annotation("GOP 9 Canteen", coordinate: .gopNineCanteen){
+                        Image("loocaPin") // 👈 your custom image from Assets.xcassets
+                            .resizable()
+                            .frame(width: 69, height: 93)
+                            .offset(x: 0, y: 20)
+                    }
+                    Annotation("GOP 1 Canteen", coordinate: .gopOneCanteen){
+                        Image("loocaPin") // 👈 your custom image from Assets.xcassets
+                            .resizable()
+                            .frame(width: 69, height: 93)
+                            .offset(x: 0, y: 20)
+                    }
+                    Annotation("GOP 6 Canteen", coordinate: .gopSixCanteen){
+                        Image("loocaPin") // 👈 your custom image from Assets.xcassets
+                            .resizable()
+                            .frame(width: 69, height: 93)
+                            .offset(x: 0, y: 20)
+                    }
                 }
                 .ignoresSafeArea(edges: .all)
                 .navigationBarHidden(true)

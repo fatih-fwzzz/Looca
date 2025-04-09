@@ -14,39 +14,35 @@ struct CompletionScreenView: View {
     @Environment(\.dismiss) var dismiss
     
             var body: some View {
-                VStack(spacing: 10) {
+                VStack() {
                     Spacer()
-
-                    Image(systemName: "mappin.and.ellipse")
-                        .resizable()
-                        .frame(width: 40, height: 40)
-                        .foregroundColor(.white)
-                        .padding()
-                        .background(Circle().fill(Color.blue))
-
                     Text("GOP 9")
-                        .font(.title)
+                        .font(.largeTitle)
                         .bold()
-                        .foregroundColor(.blue)
-
-                    Text("Navigation Complete")
-                        .font(.headline)
-                        .foregroundColor(.blue)
-
-                    Text("You have reached your destination and arrived at Canteen GOP 9")
-                        .font(.subheadline)
-                        .multilineTextAlignment(.center)
-                        .foregroundColor(.gray)
+                        .foregroundColor(Color("MainColor"))
                     
+                    Image("CompleteSticker")
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 350, height: 350)
+                        .offset(x: 0, y: 40)
+                        .clipped()
+
+                    Text("You Have Reach Your Destination")
+                        .fixedSize(horizontal: false, vertical: true)
+                        .font(.title)
+                        .fontWeight(.bold)
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(Color("MainColor"))
                     Spacer()
                     
                     Button(action: {
                         onBack?()
                         dismiss()
-                        showBackPage.toggle()
+                        showBackPage = true
                     }) {
                         Text("Go Back to Starting Maps")
-                            .font(.headline)
+                            .font(.subheadline)
                             .padding()
                             .frame(maxWidth: .infinity)
                             .background(Color("MainColor"))
@@ -54,23 +50,13 @@ struct CompletionScreenView: View {
                             .clipShape(RoundedRectangle(cornerRadius: 10))
                             .padding(.horizontal)
                     }
-
-                    Spacer()
                 }
                 .padding()
-                .background(
-                    RoundedRectangle(cornerRadius: 10)
-                        .fill(Color.white)
-//                        .stroke(Color("MainColor"), lineWidth: 3)
-                        .offset(y:70)
-                )
-                .cornerRadius(10)
-                .frame(width: .infinity, height:100)
                 .padding()
             }
         }
 
 
-//#Preview {
-//    CompletionScreenView()
-//}
+#Preview {
+    CompletionScreenView(showBackPage: .constant(true))
+}
