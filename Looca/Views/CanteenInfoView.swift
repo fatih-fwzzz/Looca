@@ -11,20 +11,20 @@ struct CanteenInfoView: View {
     @State private var showAll: Bool = true
     
     @Binding var path: [Int]
-    
     @Binding var showLocationListSheet: Bool
     @Binding var showCanteenInfoSheet: Bool
     @Binding var showNavSheet: Bool
-    
     @Binding var selectedDetent: PresentationDetent
     @Binding var selectedCanteenLocation: Int
     
     let canteens: [Canteen]
     
     var body: some View {
-        if let selectedCanteen = canteens.first(where: { $0.id == selectedCanteenLocation }){
-                VStack {
+        if let selectedCanteen = canteens.first(where: { $0.id == selectedCanteenLocation }) {
+            VStack {
+                ScrollView {
                     VStack(alignment: .leading) {
+                        // Header
                         HStack {
                             Text(selectedCanteen.name)
                                 .font(.title)
@@ -42,68 +42,64 @@ struct CanteenInfoView: View {
                                     .foregroundColor(Color("MainColor"))
                             }
                         }
-                        .padding(.top, 5)
 
                         Text("Located in the basement of Monash University’s Building")
                             .font(.subheadline)
                             .lineLimit(nil)
                             .fixedSize(horizontal: false, vertical: true)
-                            .frame(maxWidth: 250, alignment: .leading) 
-                    }
-                    
-                    // find the data based on the id
-                    
-                    CanteenInfoCard(openHours: selectedCanteen.openHours, estimate: selectedCanteen.estimationInMin, distance: Int(selectedCanteen.distanceInKm))
-                        .padding([.top, .bottom])
-                    
-                    Text("Tenant List")
-                        .font(.headline)
-                        .fontWeight(.semibold)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-//                        .padding(.leading)
-                    
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack {
-                            ForEach(selectedCanteen.tenants) { tenant in
-                                Button {
-                                    path.append(selectedCanteenLocation)
-                                    showCanteenInfoSheet.toggle()
-                                }
-                                label: {
-                                    TenantCard(imageName: "restaurant", tenantName: tenant.name)
-                                }
-                                .buttonStyle(PlainButtonStyle())
-                            }
-                        }
-                        .padding(.leading)
-                    }
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    
-                    
-                    Spacer()
-                    
-                    // Button Fixed at Bottom
-                    VStack {
-                        Button {
-                            showCanteenInfoSheet.toggle()
-                            showNavSheet.toggle()
-                        }
-                        label:{
-                            NavigateButton()
-                                .padding()
-                        }
+                            .frame(maxWidth: 250, alignment: .leading)
                         
+                        // Info Cards
+                        CanteenInfoCard(
+                            openHours: selectedCanteen.openHours,
+                            estimate: selectedCanteen.estimationInMin,
+                            distance: Int(selectedCanteen.distanceInKm)
+                        )
+                        .padding(.top)
+                        
+                        AdditionalInfoCard()
+                        
+                        Text("Top Tenants")
+                            .font(.headline)
+                            .fontWeight(.semibold)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(.top)
+                        
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack {
+                                ForEach(selectedCanteen.tenants) { tenant in
+                                    Button {
+                                        path.append(selectedCanteenLocation)
+                                        showCanteenInfoSheet.toggle()
+                                    } label: {
+                                        TenantCard(imageName: "restaurant", tenantName: tenant.name)
+                                    }
+                                    .buttonStyle(PlainButtonStyle())
+                                }
+                            }
+                            .padding(.leading)
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
                     }
-                    .frame(maxWidth: .infinity)
-                    
-                    
+                    .padding(.horizontal)
+                    .padding(.top, 30)
                 }
-                .padding([.horizontal, .top])
-                .ignoresSafeArea(.keyboard)
-                .foregroundColor(Color("MainColor"))
-                .background(Color.white)
-            
-            
+                
+                // Button fixed at bottom
+                VStack {
+                    Button {
+                        showCanteenInfoSheet.toggle()
+                        showNavSheet.toggle()
+                    } label: {
+                        NavigateButton()
+                            .padding()
+                    }
+                }
+                .frame(maxWidth: .infinity)
+            }
+            .ignoresSafeArea(.keyboard)
+            .foregroundColor(Color("MainColor"))
+            .background(Color.white)
         }
     }
 }

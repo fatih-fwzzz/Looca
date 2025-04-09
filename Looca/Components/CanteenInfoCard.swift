@@ -11,46 +11,56 @@ struct CanteenInfoCard: View {
     var openHours: String
     var estimate: Int
     var distance: Int
+    
     var body: some View {
-        HStack {
-            VStack{
-                Text("Open Hours")
-                    .font(.headline)
-                    .fontWeight(.semibold)
+        HStack(spacing: 16) { // spacing between the cards
+            VStack {
+                Image(systemName: "door.left.hand.open")
+                    .padding(.bottom, 5)
+//                Text("Open Hours")
+//                    .font(.headline)
+//                    .fontWeight(.semibold)
                 Text(openHours)
                     .font(.subheadline)
-                    .fontWeight(.light)
+                    .fontWeight(.regular)
             }
-            VStack{
-                Text("Estimation")
-                    .font(.headline)
-                    .fontWeight(.semibold)
+            .frame(width: 90, height: 60)
+            .padding(10)
+            .background(Color("SecondColor"))
+            .cornerRadius(12)
+            .shadow(radius: 2)
+
+            VStack {
+                Image(systemName: "clock")
+                    .padding(.bottom, 5)
+//                Text("Estimation")
+//                    .font(.headline)
+//                    .fontWeight(.semibold)
                 Text("\(estimate) min / Walk")
                     .font(.subheadline)
-                    .fontWeight(.light)
+                    .fontWeight(.regular)
             }
-            .padding(EdgeInsets(top: 5, leading: 20, bottom: 5, trailing: 20))
-            .overlay(
-                Rectangle()
-                    .frame(width: 0.5, height: 60) // Thin vertical line
-                    .foregroundColor(.gray),
-                alignment: .leading // Left border
-            )
-            .overlay(
-                Rectangle()
-                    .frame(width: 0.5, height: 60) // Thin vertical line
-                    .foregroundColor(.gray),
-                alignment: .trailing // Right border
-            )
-            VStack{
-                Text("Distance")
-                    .font(.headline)
-                    .fontWeight(.semibold)
-                Text("\(distance) km")
+            .frame(width: 90, height: 60)
+            .padding(10)
+            .background(Color("SecondColor"))
+            .cornerRadius(12)
+            .shadow(radius: 2)
+
+            VStack {
+                Image(systemName: "mappin.and.ellipse")
+                    .padding(.bottom, 5)
+//                Text("Distance")
+//                    .font(.headline)
+//                    .fontWeight(.semibold)
+                Text("\(distance) m")
                     .font(.subheadline)
-                    .fontWeight(.light)
+                    .fontWeight(.regular)
             }
-            
+            .frame(width: 90, height: 60)
+            .padding(10)
+            .background(Color("SecondColor"))
+            .cornerRadius(12)
+            .shadow(radius: 2)
         }
     }
 }

@@ -85,7 +85,7 @@ struct ContentView: View {
         .sheet(isPresented: $showCanteenInfoSheet){
             // this is the detail of the selected canteen location
             CanteenInfoView(path: $path, showLocationListSheet: $showLocationListSheet, showCanteenInfoSheet: $showCanteenInfoSheet, showNavSheet: $showNavSheet, selectedDetent: $selectedDetent, selectedCanteenLocation: $selectedCanteenLocation, canteens: viewModel.canteens)
-                .presentationDetents([.fraction(0.5), .medium, .large], selection: $selectedDetent)
+                .presentationDetents([.medium, .large], selection: $selectedDetent)
                 .presentationDragIndicator(.visible)
         }
         
@@ -98,7 +98,7 @@ struct ContentView: View {
             
             if let selectedCanteen = viewModel.canteens.first(where: { $0.id == selectedPage.selectedPage }) {
                 NavView(showNavSheet: $showNavSheet, showCanteenInfoSheet: $showCanteenInfoSheet, canteen: selectedCanteen)
-                    .presentationDetents([.fraction(0.5), .medium, .large], selection: $selectedDetent)
+                    .presentationDetents([.medium, .large], selection: $selectedDetent)
                     .presentationDragIndicator(.visible)
             } else {
                 VStack {
@@ -106,7 +106,7 @@ struct ContentView: View {
                     Text("selectedCanteenLocation: \(selectedCanteenLocation)")
                     Text("viewModel.canteens: \(viewModel.canteens)")
                 }
-                .presentationDetents([.fraction(0.5), .medium, .large], selection: $selectedDetent)
+                .presentationDetents([.medium, .large], selection: $selectedDetent)
                 .presentationDragIndicator(.visible)
             }
         }
