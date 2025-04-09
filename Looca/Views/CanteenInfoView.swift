@@ -13,7 +13,7 @@ struct CanteenInfoView: View {
     @Binding var path: [Int]
     @Binding var showLocationListSheet: Bool
     @Binding var showCanteenInfoSheet: Bool
-    @Binding var showNavSheet: Bool
+    @Binding var showStepNavigationView: Bool
     @Binding var selectedDetent: PresentationDetent
     @Binding var selectedCanteenLocation: Int
     
@@ -89,7 +89,7 @@ struct CanteenInfoView: View {
                 VStack {
                     Button {
                         showCanteenInfoSheet.toggle()
-                        showNavSheet.toggle()
+                        showStepNavigationView.toggle()
                     } label: {
                         NavigateButton()
                             .padding()
@@ -107,7 +107,7 @@ struct CanteenInfoView: View {
 #Preview {
     CanteenInfoView(path: .constant([]),
                     showLocationListSheet: .constant(false), showCanteenInfoSheet: .constant(true),
-                    showNavSheet: .constant(false),
+                    showStepNavigationView: .constant(false),
                     selectedDetent: .constant(.fraction(0.5)), selectedCanteenLocation: .constant(1),
                     canteens: [Canteen(id: 1, name: "GOP 9 Canteen", latitude: 10, longitude: 35, image: "restaurants2", openHours: "17.00-23.00", estimationInMin: 10, distanceInKm: 10.0, tenants: [Tenant(id: 1, name: "t1", description: "asdf", image: "placeholder", priceMin: 10, priceMax: 100, menus: [Menu(id: 1, name: "asdf", description: "asdfg", image: "sadf", price: 14, bestSeller: true)]), Tenant(id: 2, name: "t2", description: "asdf", image: "placeholder", priceMin: 10, priceMax: 100, menus: [Menu(id: 1, name: "asdf", description: "asdfg", image: "sadf", price: 14, bestSeller: true)]), Tenant(id: 3, name: "t3", description: "asdf", image: "placeholder", priceMin: 10, priceMax: 100, menus: [Menu(id: 1, name: "asdf", description: "asdfg", image: "sadf", price: 14, bestSeller: true)])], directions: [Direction(id: 1, description: "sadg", afterMeters: 10, image: "restaurant")])]
                 )

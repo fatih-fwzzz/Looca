@@ -9,6 +9,8 @@ import SwiftUI
 import MapKit
 
 struct StepNavigationView: View {
+    @Binding var stepCoordinate: CLLocationCoordinate2D
+    
     @State private var directionSteps: [DirectionStep] = [
         DirectionStep(
             description: "Turn right at Parking Lot GOP 9",
@@ -27,8 +29,9 @@ struct StepNavigationView: View {
     ]
     
     @State private var currentStepIndex = 0
-    @State private var showCompletionScreen = false
-    @State private var showDirectionStep: Bool = true
+    
+    @Binding var showStepNavigationView: Bool
+    @Binding var showCompletionScreen: Bool
     
     @State private var region = MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: -6.364, longitude: 106.828),
@@ -46,95 +49,101 @@ struct StepNavigationView: View {
     var body: some View {
         ZStack {
             Map{
-                Marker("GOP" ,coordinate: currentStep.coordinate)
+                Marker("You are here" ,coordinate: currentStep.coordinate)
                 
             }
             .ignoresSafeArea(edges: .all)
             
-            if showDirectionStep {
+            VStack {
+                Spacer()
+                
                 VStack {
-                    Spacer()
-                    
-                    VStack {
-                        HStack {
-                            Image(systemName: currentStep.arrow)
-                                .resizable()
-                                .frame(width: 28, height: 28)
-                                .foregroundColor(Color.white)
-                            VStack (alignment: .leading) {
-                                Text(currentStep.description)
-                                    .font(.headline)
-                                    .foregroundColor(Color.white)
-                                Text("after \(currentStep.afterMeters)")
-                                    .font(.caption)
-                                    .foregroundColor(.white.opacity(0.8))
-                                
-                            }
-                            Spacer()
-                        }
-                        .padding(.bottom, 5)
-                        Image(currentStep.image)
+                    HStack {
+                        Image(systemName: currentStep.arrow)
                             .resizable()
-                            .scaledToFill()
-                            .frame(height: 120)
-                            .clipShape(RoundedRectangle(cornerRadius: 12))
-                            .padding(.bottom, 5)
-                        HStack {
-                            Button(action: {
-                                if currentStepIndex > 0 {
-                                    withAnimation {
-                                        self.currentStepIndex -= 1
-                                    }
-                                }
-                            }) {
-                                Text("< Previously")
-                                    .font(.subheadline)
-                                    .fontWeight(.semibold)
-                                    .foregroundStyle(Color("MainColor"))
-                                    .padding()
-                                    .frame(maxWidth: .infinity, maxHeight: 40)
-                                    .background(Color.white)
-                                    .cornerRadius(12)
-                                
-                            }
+                            .frame(width: 28, height: 28)
+                            .foregroundColor(Color.white)
+                        VStack (alignment: .leading) {
+                            Text(currentStep.description)
+                                .font(.headline)
+                                .foregroundColor(Color.white)
+                            Text("after \(currentStep.afterMeters)")
+                                .font(.caption)
+                                .foregroundColor(.white.opacity(0.8))
                             
-                            Button(action: {
-                                if currentStepIndex < directionSteps.count - 1 {
-                                    withAnimation { self.currentStepIndex += 1 }
-                                } else {
-                                    withAnimation {
-                                        showCompletionScreen = true
-                                        showDirectionStep = false
-                                    }
+                        }
+                        Spacer()
+                    }
+                    .padding(.bottom, 5)
+                    Image(currentStep.image)
+                        .resizable()
+                        .scaledToFill()
+                        .frame(height: 120)
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                        .padding(.bottom, 5)
+                    HStack {
+                        Button(action: {
+                            if currentStepIndex > 0 {
+                                withAnimation {
+                                    currentStepIndex -= 1
+                                    stepCoordinate = directionSteps[currentStepIndex].coordinate
                                 }
-                            }) {
-                                Text(currentStepIndex < directionSteps.count - 1 ? "Next >" :"Finish")
-                                    .font(.subheadline)
-                                    .fontWeight(.semibold)
-                                    .foregroundStyle(Color("MainColor"))
-                                    .padding()
-                                    .frame(maxWidth: .infinity, maxHeight: 40)
-                                    .background(Color.white)
-                                    .cornerRadius(12)
-                                
                             }
+                        }) {
+                            Text("< Previously")
+                                .font(.subheadline)
+                                .fontWeight(.semibold)
+                                .foregroundStyle(Color("MainColor"))
+                                .padding()
+                                .frame(maxWidth: .infinity, maxHeight: 40)
+                                .background(Color.white)
+                                .cornerRadius(12)
+                            
+                        }
+                        
+                        Button(action: {
+                            if currentStepIndex < directionSteps.count - 1 {
+                                withAnimation { self.currentStepIndex += 1 }
+                            } else {
+                                withAnimation {
+                                    showCompletionScreen = true
+                                    showStepNavigationView = false
+                                }
+                            }
+                        }) {
+                            Text(currentStepIndex < directionSteps.count - 1 ? "Next >" :"Finish")
+                                .font(.subheadline)
+                                .fontWeight(.semibold)
+                                .foregroundStyle(Color("MainColor"))
+                                .padding()
+                                .frame(maxWidth: .infinity, maxHeight: 40)
+                                .background(Color.white)
+                                .cornerRadius(12)
+                            
                         }
                     }
-                    .padding()
-                    .background(Color("MainColor"))
-                    .clipShape(RoundedRectangle(cornerRadius:16))
-                    .padding()
                 }
+                .padding()
+                .background(Color("MainColor"))
+                .clipShape(RoundedRectangle(cornerRadius:16))
+                .padding()
+            }
+            .onAppear{
+                stepCoordinate = currentStep.coordinate
             }
             
         }
-        .fullScreenCover(isPresented: $showCompletionScreen) {
-            CompletionScreenView()
-        }
+        
     }
 }
 
 
-#Preview {
-    StepNavigationView()
-}
+//#Preview {
+//    @State var sampleCoordinate = CLLocationCoordinate2D(latitude: -6.30243, longitude: 106.65225)
+//
+//       return StepNavigationView(
+//           stepCoordinate: $sampleCoordinate,
+//           showStepNavigationView: .constant(true),
+//           showCompletionScreen: .constant(false)
+//       )
+//}

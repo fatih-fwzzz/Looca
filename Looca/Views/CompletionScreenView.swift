@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct CompletionScreenView: View {
+    @Binding var showBackPage: Bool
+    
     var onBack: (() -> Void)? = nil
     @Environment(\.dismiss) var dismiss
     
@@ -41,6 +43,7 @@ struct CompletionScreenView: View {
                     Button(action: {
                         onBack?()
                         dismiss()
+                        showBackPage.toggle()
                     }) {
                         Text("Go Back to Starting Maps")
                             .font(.headline)
