@@ -34,7 +34,7 @@ struct StepNavigationView: View {
             Map {
                 if !directionSteps.isEmpty {
                     
-                    Annotation("GOP 9 Canteen", coordinate: currentStep.coordinate){
+                    Annotation("You", coordinate: currentStep.coordinate){
                         Image("pinpoint")
                             .resizable()
                             .scaledToFill()
