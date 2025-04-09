@@ -34,10 +34,10 @@ struct StepNavigationView: View {
                 if !directionSteps.isEmpty {
                     
                     Annotation("GOP 9 Canteen", coordinate: currentStep.coordinate){
-                        Image("loocaPin") // 👈 your custom image from Assets.xcassets
+                        Image("pinpoint")
                             .resizable()
-                            .frame(width: 69, height: 93)
-                            .offset(x: 0, y: 20)
+                            .scaledToFill()
+                            .frame(width: 40, height: 40)
                     }
                     
                 }

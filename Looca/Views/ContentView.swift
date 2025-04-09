@@ -55,22 +55,23 @@ struct ContentView: View {
                     )
                 )){
                     Annotation("GOP 9 Canteen", coordinate: .gopNineCanteen){
-                        Image("loocaPin") // 👈 your custom image from Assets.xcassets
+                        Image("pinpoint")
                             .resizable()
-                            .frame(width: 69, height: 93)
-                            .offset(x: 0, y: 20)
+                            .scaledToFill()
+                            .frame(width: 40, height: 40)
+
                     }
                     Annotation("GOP 1 Canteen", coordinate: .gopOneCanteen){
-                        Image("loocaPin") // 👈 your custom image from Assets.xcassets
+                        Image("pinpoint")
                             .resizable()
-                            .frame(width: 69, height: 93)
-                            .offset(x: 0, y: 20)
+                            .scaledToFill()
+                            .frame(width: 40, height: 40)
                     }
                     Annotation("GOP 6 Canteen", coordinate: .gopSixCanteen){
-                        Image("loocaPin") // 👈 your custom image from Assets.xcassets
+                        Image("pinpoint") 
                             .resizable()
-                            .frame(width: 69, height: 93)
-                            .offset(x: 0, y: 20)
+                            .scaledToFill()
+                            .frame(width: 40, height: 40)
                     }
                 }
                 .ignoresSafeArea(edges: .all)
