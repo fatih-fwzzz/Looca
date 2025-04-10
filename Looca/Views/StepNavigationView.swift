@@ -111,7 +111,7 @@ struct StepNavigationView: View {
                                     .foregroundStyle(Color("MainColor"))
                                     .padding()
                                     .frame(maxWidth: .infinity, maxHeight: 40)
-                                    .background(Color.white)
+                                    .background(currentStepIndex < directionSteps.count - 1 ? Color("BackgroundColor") : Color.red)
                                     .cornerRadius(12)
                             }
                         }
